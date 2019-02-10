@@ -74,3 +74,50 @@ a {
 	text-decoration: none !important;
 	color: #fff !important;
 }
+
+.hide-on-bg {
+	display: none;
+}
+/* media queries */
+
+@media (max-width: 580px) {
+	.hide-on-bg {
+		display: block;
+	}
+	nav button a#openup {
+		transform: rotate(-90deg);
+		-ms-transform: rotate(-90deg);
+		/* IE 9 */
+		-webkit-transform: rotate(-90deg);
+		/* Safari and Chrome */
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		position: absolute;
+		right: 1rem;
+		top: 5px;
+		border-radius: 5px;
+		color: #fff;
+	}
+	nav button a#openup {
+		text-align: center;
+	}
+	nav button {
+		background: transparent;
+		border: none;
+		outline: none;
+	}
+	.nav-item {
+		display: none;
+		width: 100%;
+		float: left;
+		border-bottom: 1px solid #555;
+		background: var(--main-dark-color);
+		margin: 0px;
+		padding: 10px;
+		position: relative;
+	}
+	.responsive {
+		display: block;
+	}
+}
