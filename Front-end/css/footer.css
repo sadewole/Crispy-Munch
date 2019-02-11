@@ -47,3 +47,8 @@
 .social-icon ul li:not(:first-child):hover {
 	opacity: 0.3;
 }
+@media (max-width: 578px) {
+	.hide-on-small {
+		display: none;
+	}
+}
