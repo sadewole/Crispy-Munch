@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Roboto+Condensed');
+* {
+	margin: 0;
+	padding: 0;
+}
+:root {
+	--main-dark-color: #343a40;
+	--main-font-family: 'Roboto Condensed', sans-serif;
+	--crispy-font: 'Pacifico', cursive;
+}
+body {
+	color: #fff;
+	font-family: var(--main-font-family);
+}
+
+.nav {
+	margin: 0px;
+	background: var(--main-dark-color);
+	color: #fff;
+	width: 100%;
+	height: 40px;
+	position: fixed;
+	top: 0;
+	padding-top: 10px;
+	z-index: 3;
+}
+.crispy {
+	display: flex;
+	justify-content: space-between;
+	font-family: var(--crispy-font);
+	margin-left: 1.5rem;
+	padding: 0 !important;
+}
+.crispy::after {
+	content: "Crispy Munch";
+	color: #fff;
+	font-size: 1rem;
+}
+.nav-flex {
+	display: flex;
+	justify-content: space-between;
+}
+.nav-flex-md {
+	display: flex;
+	justify-content: space-between;
+}
+
+/* .nav a {
+	text-decoration: none !important;
+	color: #fff !important;
+} */
+
+.hide-on-bg {
+	display: none;
+}
+
+/* media queries */
+
+@media (min-width: 1120px) {
+	.nav-pills {
+		position: absolute;
+		top: 50px;
+		display: block;
+		height: 100vh;
+		width: 250px;
+		background: #f3f3f3;
+		color: var(--main-dark-color);
+		list-style: none;
+	}
+	.nav-item {
+		color: var(--main-dark-color);
+		display: block;
+		margin: 0 10px;
+		padding-bottom: 0px;
+		padding-top: 0px;
+	}
+	.nav-item a {
+		text-decoration: none;
+		color: inherit;
+	}
+}
+/* 
+@media (max-width: 580px) {
+	.hide-on-bg {
+		display: block;
+	}
+	.nav-flex-md {
+		display: block;
+	}
+	nav button a#openup {
+		transform: rotate(-90deg);
+		-ms-transform: rotate(-90deg); */
+/* IE 9 */
+/* -webkit-transform: rotate(-90deg); */
+/* Safari and Chrome */
+/* width: 30px;
+		height: 30px;
+		display: inline-block;
+		position: absolute;
+		right: 1rem;
+		top: 5px;
+		border-radius: 5px;
+		color: #fff;
+	}
+	nav button a#openup {
+		text-align: center;
+	}
+	nav button {
+		background: transparent;
+		border: none;
+		outline: none;
+	}
+	.nav-pills {
+		margin: 0;
+	}
+	.nav-item:hover::after {
+		width: 0px;
+	}
+	.nav-item {
+		display: none;
+		width: 100%;
+		float: left;
+		border-bottom: 1px solid #555;
+		background: var(--main-dark-color);
+		margin: 0px;
+		padding: 10px;
+		position: relative;
+	}
+	.responsive {
+		display: block;
+	}
+} */
