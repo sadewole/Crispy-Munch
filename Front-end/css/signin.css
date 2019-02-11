@@ -122,3 +122,24 @@ input[type="submit"]:hover {
 	position: absolute;
 	top: 75vh;
 }
+@media (max-width: 578px) {
+	.grid-row {
+		width: 90%;
+		position: absolute;
+		top: 15%;
+		left: 1rem;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: 0px;
+		padding: 0px;
+	}
+	.login-text {
+		display: none;
+	}
+	.login {
+		width: 90%;
+		margin: 0 auto;
+		padding: 1rem;
+		border-radius: 5px;
+	}
+}
