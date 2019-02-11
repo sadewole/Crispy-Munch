@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Roboto+Condensed');
+* {
+	margin: 0;
+	padding: 0;
+}
+:root {
+	--main-dark-color: #343a40;
+	--main-font-family: 'Roboto Condensed', sans-serif;
+	--crispy-font: 'Pacifico', cursive;
+}
+
+.footer-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 2rem;
+	text-align: center;
+	background: var(--main-dark-color);
+	color: #fff;
+	padding: 1rem;
+	padding: 2rem;
+	font-size: 14px;
+}
+.footer ul {
+	list-style: none;
+	text-align: left;
+}
+
+.footer ul li:first-child {
+	font-size: 1.2rem;
+	padding-bottom: 0.5rem;
+	border-bottom: #666 solid 1px;
+	margin-bottom: 1rem;
+}
+
+.footer-bottom {
+	background: #333;
+	padding: 1rem;
+	color: #fff;
+	text-align: center;
+}
