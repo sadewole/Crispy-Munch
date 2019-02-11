@@ -10,30 +10,32 @@
 <body>
     <div class="container-fluid">
         <nav class="nav">
-         <div class="nav-flex">
-           <a href="./index.html" class="crispy">
-             <img src="./img/logo.png" alt="logo" width="30px" height="30px">
+            <div class="nav-flex-md">
+                <div class="nav-flex">
+                    <a href="./index.html" class="crispy">
+                      <img src="./img/logo.png" alt="logo" width="30px" height="30px">
             
-           </a>
-           <button class="hide-on-bg" onClick={this.opennav}>
-                   <a href="#" id="openup">|||</a>
-           </button>
-           <ul class="nav-pills">
-             <li class="nav-item">
-               <a href="./index.html" class="nav-a">Home</a>
-               </li>
-             <li class="nav-item">
-               <a href="./menu.html" class="nav-a">Explore Menu</a>
-               </li>
-             <li class="nav-item">
-               <a href="./login.html" class="nav-a">Login</a>
-             </li>
-             <li class="nav-item">
-               <a href="./register.html" class="nav-a">Register</a>
-             </li>
-           </ul>
-         </div>
-       </nav>
+                    </a>
+                    <button class="hide-on-bg" id="opennav">
+                      <a href="#" id="openup">|||</a>
+                    </button>
+                </div>
+              <ul class="nav-pills">
+                <li class="nav-item">
+                  <a href="./index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a href="./menu.html" class="nav-link">Explore Menu</a>
+                </li>
+                <li class="nav-item">
+                  <a href="./login.html" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a href="./register.html" class="nav-link">Register</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
     </div>
 
     <div class="container">
@@ -153,5 +155,6 @@
         </div>
   </div>
   
+  <script src="js/nav.js"></script>
 </body>
 </html>
