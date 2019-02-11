@@ -38,3 +38,17 @@
 	color: #fff;
 	text-align: center;
 }
+
+.social-icon ul li:not(:first-child) {
+	display: inline;
+	font-size: 1.5rem;
+	transition: all 0.5s;
+}
+.social-icon ul li:not(:first-child):hover {
+	opacity: 0.3;
+}
+@media (max-width: 578px) {
+	.hide-on-small {
+		display: none;
+	}
+}
