@@ -24,14 +24,14 @@ body {
 	padding-top: 10px;
 	z-index: 3;
 }
-.crispy {
+.crispy1 {
 	display: flex;
 	justify-content: space-between;
 	font-family: var(--crispy-font);
 	margin-left: 1.5rem;
 	padding: 0 !important;
 }
-.crispy::after {
+.crispy1::after {
 	content: "Crispy Munch";
 	color: #fff;
 	font-size: 1rem;
@@ -39,68 +39,87 @@ body {
 .nav-flex {
 	display: flex;
 	justify-content: space-between;
+	transition: all .5s;
 }
 .nav-flex-md {
 	display: flex;
 	justify-content: space-between;
 }
-
-/* .nav a {
-	text-decoration: none !important;
-	color: #fff !important;
-} */
-
+.nav-pills {
+	position: absolute;
+	top: 50px;
+	display: block;
+	height: 100vh;
+	width: 200px;
+	background: rgba(0, 0, 0, 0.1);
+	color: var(--main-dark-color);
+	list-style: none;
+	z-index: 3;
+}
+.nav-item {
+	color: var(--main-dark-color);
+	display: block;
+	margin: 1rem;
+	padding: 10px;
+	text-align: left;
+	border-bottom: 1px solid #fff;
+	transition: all 0.5s;
+}
+.db {
+	font-size: 1rem;
+	margin-right: 10px;
+	transition: all 0.5s;
+}
+.nav-item:hover .db {
+	margin-right: 15px;
+}
+.nav-item:hover {
+	color: #000;
+	font-weight: bold;
+	border-color: #000;
+}
+.nav-item a {
+	text-decoration: none;
+	color: inherit;
+}
 .hide-on-bg {
 	display: none;
 }
 
 /* media queries */
 
-@media (min-width: 1120px) {
-	.nav-pills {
-		position: absolute;
-		top: 50px;
-		display: block;
-		height: 100vh;
-		width: 250px;
-		background: #f3f3f3;
-		color: var(--main-dark-color);
-		list-style: none;
-	}
-	.nav-item {
-		color: var(--main-dark-color);
-		display: block;
-		margin: 0 10px;
-		padding-bottom: 0px;
-		padding-top: 0px;
-	}
-	.nav-item a {
-		text-decoration: none;
-		color: inherit;
-	}
-}
-/* 
-@media (max-width: 580px) {
+@media (max-width: 768px) {
 	.hide-on-bg {
 		display: block;
 	}
+	.nav-pills {
+		position: absolute;
+		top: 0;
+		left: -1000px;
+		transition: all 1s;
+		z-index: 3;
+	}
+
 	.nav-flex-md {
 		display: block;
 	}
 	nav button a#openup {
 		transform: rotate(-90deg);
-		-ms-transform: rotate(-90deg); */
-/* IE 9 */
-/* -webkit-transform: rotate(-90deg); */
-/* Safari and Chrome */
-/* width: 30px;
+		-ms-transform: rotate(-90deg);
+		/* IE 9 */
+		-webkit-transform: rotate(-90deg);
+		/* Safari and Chrome */
+		width: 30px;
 		height: 30px;
 		display: inline-block;
 		position: absolute;
-		right: 1rem;
+		left: 1rem;
 		top: 5px;
 		border-radius: 5px;
+		font-weight: bold;
 		color: #fff;
+		cursor: pointer;
+		z-index: 3;
 	}
 	nav button a#openup {
 		text-align: center;
@@ -110,23 +129,40 @@ body {
 		border: none;
 		outline: none;
 	}
-	.nav-pills {
-		margin: 0;
-	}
-	.nav-item:hover::after {
-		width: 0px;
-	}
-	.nav-item {
+	.hide-on-small {
 		display: none;
-		width: 100%;
-		float: left;
-		border-bottom: 1px solid #555;
-		background: var(--main-dark-color);
-		margin: 0px;
-		padding: 10px;
-		position: relative;
 	}
-	.responsive {
-		display: block;
+	.crispy1 {
+		margin-left: 3rem;
 	}
-} */
+	.crispy2 {
+		display: flex;
+		justify-content: space-between;
+		font-family: var(--crispy-font);
+		margin-left: 1rem;
+		padding: 0 !important;
+	}
+	.crispy2::after {
+		content: "Crispy Munch";
+		color: #fff;
+		font-size: 1rem;
+	}
+	.nav-item:first-child {
+		margin: 1rem;
+		padding-top: 0px;
+		padding-bottom: 5px;
+		border-bottom-color: transparent;
+	}
+	.nav-item:first-child:hover {
+		font-weight: inherit;
+	}
+	.modal {
+		display: none; /* Hidden by default */
+		position: fixed; /* Stay in place */
+		left: 0;
+		top: 0;
+		width: 100%; /* Full width */
+		height: 100%; /* Full height */
+		transition: all 0.2s;
+	}
+}

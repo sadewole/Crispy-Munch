@@ -15,13 +15,6 @@ body {
 	color: #fff;
 	font-family: var(--main-font-family);
 	background: #f8f8f8;
-	/* background: url('../img/landingPagebg.jpg'), linear-gradient(red, green);
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-attachment: fixed;
-	width: 100%;
-	height: 100vh; */
 }
 .nav-flex a:nth-child(2) {
 	margin-left: 1rem;
