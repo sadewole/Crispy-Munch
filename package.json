@@ -1,0 +1,23 @@
+{
+	"name": "crispy-munch",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"deploy": "gh-pages -d Front-end"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sadewole/Crispy-Munch.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/sadewole/Crispy-Munch/issues"
+	},
+	"homepage": "https://github.com/sadewole/Crispy-Munch#readme",
+	"dependencies": {
+		"gh-pages": "^2.0.1"
+	}
+}
