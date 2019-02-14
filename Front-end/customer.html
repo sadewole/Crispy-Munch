@@ -7,6 +7,7 @@
     <title>Customers</title>
     <link rel="stylesheet" href="./css/dashboard.css">
     <link rel="stylesheet" href="css/font-awesome/css/all.css">
+    <link rel="stylesheet" href="css/customer.css">
 </head>
 <body>
         <div class="">
@@ -59,6 +60,60 @@
                 </nav>
               </div>
 
-              <script src="js/navadmin.js"></script>
+                 <!-- container -->
+              <div class="container">
+                <h1>List of all users</h1>
+                <div class="contain">
+                    <div>
+                      <form class="form">
+                        <div class="form-inline">
+                          <label>Search:</label>
+                          <input type="text" name="search" id="">
+                        </div>
+                      </form>
+                    </div>
+                    <!-- list of users -->
+                    <div >
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Position</td>
+                                    <td>Promote</td>
+                                    <td>Delete</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tola Akinrotoye</td>
+                                    <td>Admin</td>
+                                    <td class="promote"><i class="far fa-edit"></i></td>
+                                    <td class="delete"><i class="far fa-trash-alt"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>Desmond Elliot</td>
+                                    <td>Customer</td>
+                                    <td class="promote"><i class="far fa-edit"></i></td>
+                                    <td class="delete"><i class="far fa-trash-alt"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>Wikky James</td>
+                                    <td>Customer</td>
+                                    <td class="promote"><i class="far fa-edit"></i></td>
+                                    <td class="delete"><i class="far fa-trash-alt"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>Fela Durotoye</td>
+                                    <td>Customer</td>
+                                    <td class="promote"><i class="far fa-edit"></i></td>
+                                    <td class="delete"><i class="far fa-trash-alt"></i></td>
+                                </tr>
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>  
+              </div>
+  <script src="js/navadmin.js"></script>
 </body>
 </html>
