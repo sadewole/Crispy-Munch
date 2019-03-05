@@ -12,6 +12,7 @@
 	--crispy-font: 'Pacifico', cursive;
 }
 body {
+	/* background: #323330 */
 	color: #fff;
 	font-family: var(--main-font-family);
 	overflow-x: hidden;
@@ -24,7 +25,8 @@ body {
 	font-family: var(--crispy-font);
 }
 .landPagebg {
-	background: url(../img/landingPagebg.jpg);
+	background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/landingPagebg.jpg");
+	/* background: url(../img/landingPagebg.jpg); */
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -195,6 +197,8 @@ img {
 
 @media (min-width: 1120px) {
 	.landPagebg {
+		/* background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/landingPagebg.jpg"); */
+
 		background: url(../img/landingPagebg.jpg);
 		background-position: center;
 		background-repeat: no-repeat;
@@ -202,7 +206,7 @@ img {
 		background-attachment: fixed;
 		width: 100%;
 		height: 100vh;
-		filter: blur(20px);
+		filter: blur(10px);
 		-webkit-filter: blur(10px);
 	}
 }
@@ -217,8 +221,8 @@ img {
 	.landPagebg2 {
 		width: 100%;
 		height: 30vh;
-		filter: blur(10px);
-		-webkit-filter: blur(10px);
+		/* filter: blur(10px);
+		-webkit-filter: blur(10px); */
 		transition: all .5s;
 	}
 	.col-5 {
