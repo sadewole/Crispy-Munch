@@ -1,16 +1,15 @@
 const search = document.querySelector('#search');
 const tbody = document.querySelectorAll('#tbody tr');
-const noSearch = document.querySelector('.noSearch');
 
-const controlSearch = (e) => {
-	const val = e.target.value.toUpperCase();
+const controlSearch = e => {
+  const val = e.target.value.toUpperCase();
 
-	tbody.forEach((i) => {
-		if (i.children[0].innerText.toUpperCase().indexOf(val) != -1) {
-			i.style.display = '';
-		} else {
-			i.style.display = 'none';
-		}
-	});
+  tbody.forEach(i => {
+    if (i.children[0].innerText.toUpperCase().indexOf(val) !== -1) {
+      i.style.display = '';
+    } else {
+      i.style.display = 'none';
+    }
+  });
 };
 search.addEventListener('input', controlSearch);

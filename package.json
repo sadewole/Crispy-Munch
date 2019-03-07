@@ -1,23 +1,52 @@
 {
-	"name": "crispy-munch",
+	"name": "server",
 	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
+	"description": "An application to order a meal",
+	"main": "server/index.js",
 	"scripts": {
+		"start": "nodemon --exec babel-node server/index.js",
+		"build": "babel server --out-dir dist",
+		"serve": "node dist/index.js",
 		"deploy": "gh-pages -d Front-end"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/sadewole/Crispy-Munch.git"
 	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
+	"author": "Samador",
+	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/sadewole/Crispy-Munch/issues"
 	},
 	"homepage": "https://github.com/sadewole/Crispy-Munch#readme",
 	"dependencies": {
-		"gh-pages": "^2.0.1"
+		"bcryptjs": "^2.4.3",
+		"body-parser": "^1.18.3",
+		"cors": "^2.8.5",
+		"dotenv": "^6.2.0",
+		"express": "^4.16.4",
+		"gh-pages": "^2.0.1",
+		"jsonwebtoken": "^8.5.0",
+		"morgan": "^1.9.1",
+		"multer": "^1.4.1",
+		"passport": "^0.4.0",
+		"passport-jwt": "^4.0.0",
+		"pg": "^7.8.0"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.2.3",
+		"@babel/core": "^7.3.4",
+		"@babel/node": "^7.2.2",
+		"@babel/preset-env": "^7.3.4",
+		"eslint": "^5.3.0",
+		"eslint-config-airbnb": "^17.1.0",
+		"eslint-config-prettier": "^4.0.0",
+		"eslint-plugin-import": "^2.14.0",
+		"eslint-plugin-jsx-a11y": "^6.2.1",
+		"eslint-plugin-prettier": "^3.0.1",
+		"eslint-plugin-react": "^7.12.4",
+		"mocha": "^5.2.0",
+		"nodemon": "^1.18.10",
+		"prettier": "^1.16.4"
 	}
 }

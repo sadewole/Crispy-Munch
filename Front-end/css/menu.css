@@ -14,7 +14,8 @@
 body {
 	color: #fff;
 	font-family: var(--main-font-family);
-	background: url('../img/landingPagebg.jpg'), linear-gradient(red, green);
+	background-image: linear-gradient(rgba(235, 233, 233, 0.364), rgba(235, 233, 233, 0.364)),
+		url("../img/user/landImg.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -164,6 +165,9 @@ img {
 	}
 }
 @media (max-width: 578px) {
+	.custom-menu1 {
+		display: none;
+	}
 	.food-menu {
 		display: grid;
 		grid-template-columns: 1fr;
