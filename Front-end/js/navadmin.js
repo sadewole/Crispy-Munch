@@ -1,6 +1,6 @@
 // navbar functions
 const navPill = document.querySelector('.nav-pills');
-const modal = document.querySelector('.modal');
+const modal = document.querySelector('.navModal');
 const navFlex = document.querySelector('.nav-flex');
 
 const openNav = () => {
@@ -15,9 +15,10 @@ const openNav = () => {
 };
 
 const closeNav = e => {
-  if (e.target == modal) {
+  if (e.target === modal) {
     navPill.style.left = '-1000px';
     navFlex.style.opacity = 1;
+    modal.style.display = 'none';
   }
 };
 

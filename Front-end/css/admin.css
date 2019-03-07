@@ -49,6 +49,7 @@ body {
 	background: var(--main-dark-color);
 	color: #fff;
 }
+
 .table .edit,
 .table .promote,
 .table .delete {
@@ -68,7 +69,7 @@ body {
 	margin-bottom: 1rem;
 	color: var(--main-dark-color);
 	border-collapse: collapse;
-	border-spacing: 0px;
+	border-spacing: none;
 }
 
 .foodMenu .table td:nth-child(1) img {
@@ -108,14 +109,21 @@ body {
 .addModal {
 	width: 40%;
 	margin: 0 auto;
-	margin-top: -10000px;
 	transition: all 0.5s;
 	padding: 1.5rem;
 	border-radius: 0 0 5px 5px;
 	background: #fff;
 	color: var(--main-dark-color);
-	z-index: 5;
-	transition: all 0.5s;
+	transition: all 0.3s;
+	animation: popUp 0.3s linear forwards;
+}
+@keyframes popUp {
+	from {
+		margin-top: -10000px;
+	}
+	to {
+		margin-top: 0px;
+	}
 }
 .modalbg {
 	display: none;
@@ -126,7 +134,7 @@ body {
 	height: 100%; /* Full height */
 	transition: all 0.2s;
 	background: rgba(0, 0, 0, 0.3);
-	z-index: 4;
+	z-index: 3;
 }
 form {
 	padding: 1.2rem 0;
@@ -168,7 +176,7 @@ form {
 .addModal button:after {
 	clear: both;
 }
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
 	.container {
 		position: relative;
 		left: 0px;
