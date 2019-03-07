@@ -14,7 +14,7 @@
 body {
 	color: #fff;
 	font-family: var(--main-font-family);
-	background: url('../img/landingPagebg.jpg'), linear-gradient(red, green);
+	background: url('../img/landingPagebg.jpg');
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
