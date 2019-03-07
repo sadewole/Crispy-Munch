@@ -25,16 +25,15 @@ body {
 	font-family: var(--crispy-font);
 }
 .landPagebg {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/landingPagebg.jpg");
-	/* background: url(../img/landingPagebg.jpg); */
+	background: url(../img/landingPagebg.jpg);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
-	/* width: 100vw; */
-	height: 50vh;
-	/* filter: blur(20px);
-	-webkit-filter: blur(10px); */
+	width: 100%;
+	height: 100vh;
+	filter: blur(10px);
+	-webkit-filter: blur(10px);
 }
 .landPagetxt {
 	width: 60%;
@@ -195,22 +194,11 @@ img {
 	right: 0;
 }
 
-@media (min-width: 1120px) {
-	.landPagebg {
-		/* background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/landingPagebg.jpg"); */
-
-		background: url(../img/landingPagebg.jpg);
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: cover;
-		background-attachment: fixed;
-		width: 100%;
-		height: 100vh;
-		filter: blur(10px);
-		-webkit-filter: blur(10px);
-	}
-}
 @media (max-width: 1120px) {
+	.landPagebg {
+		background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/landingPagebg.jpg");
+		height: 50vh;
+	}
 	.imgs {
 		grid-template-columns: repeat(3, 1fr);
 	}
@@ -219,10 +207,7 @@ img {
 		width: 250px;
 	}
 	.landPagebg2 {
-		width: 100%;
 		height: 30vh;
-		/* filter: blur(10px);
-		-webkit-filter: blur(10px); */
 		transition: all .5s;
 	}
 	.col-5 {
@@ -244,7 +229,7 @@ img {
 		padding: 10px;
 	}
 }
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-width: 900px) and (min-width: 768px) {
 	.tips-grid {
 		grid-template-columns: 1fr;
 		grid-gap: 2.5rem;
@@ -289,6 +274,7 @@ img {
 		margin: 0px;
 		font-size: 1.4rem;
 	}
+
 	.tips h1 {
 		font-size: 1.5rem;
 	}
@@ -297,7 +283,6 @@ img {
 		width: calc(100% - 90%);
 		position: absolute;
 		top: 40px;
-
 		margin-left: -25px;
 		height: 3px;
 		background: var(--main-dark-color);
@@ -333,5 +318,10 @@ img {
 	.col-5 a {
 		font-size: 1rem;
 		padding: 10px;
+	}
+}
+@media (max-width: 400px) and (min-width: 300px) {
+	.landPagebg2 {
+		height: 35vh;
 	}
 }
