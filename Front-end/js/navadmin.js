@@ -21,6 +21,13 @@ const closeNav = e => {
     modal.style.display = 'none';
   }
 };
+const removeNav = () => {
+  if (window.innerWidth <= 768) {
+    navPill.style.left = '-1000px';
+    navFlex.style.opacity = 1;
+    document.querySelector('.navModal').style.display = 'none';
+  }
+};
 
 const start = () => {
   window.addEventListener('click', closeNav);
