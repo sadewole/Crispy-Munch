@@ -18,9 +18,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Routers
 app.use('/api/v1', authRoute);
-// app.use('/api/v1', orderRoute);
+app.use('/api/v1', orderRoute);
 app.use('/api/v1', menuRoute);
-// app.use('/api/v1', userRoute);
+app.use('/api/v1', userRoute);
 
 // Error handler
 app.use((req, res, next) => {

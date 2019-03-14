@@ -43,9 +43,13 @@ class Tables {
   }
 
   static createOrderTable() {
-    const queryText = `CREATE TABLE IF NOT EXISTS order(
+    const queryText = `CREATE TABLE IF NOT EXISTS orders(
       id UUID PRIMARY KEY,
-
+      user_id UUID not null,
+      menu_id UUID not null,
+      quantity numeric not null,
+      FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+      FOREIGN KEY (menu_id) REFERENCES menu (id) ON DELETE CASCADE
     )`;
 
     db.query(queryText)
@@ -67,3 +71,4 @@ class Tables {
 
 Tables.createUserTable();
 Tables.createMenuTable();
+Tables.createOrderTable();

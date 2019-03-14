@@ -33,7 +33,7 @@ class Menu {
       .then(result => {
         if (!result.rows.length) {
           return res.status(404).json({
-            message: 'Invalid request'
+            message: 'Not Found'
           });
         }
         return res.status(200).json({
@@ -43,7 +43,7 @@ class Menu {
         });
       })
       .catch(err => {
-        res.status(500).json(err);
+        res.status(400).json(err);
       });
   }
 
