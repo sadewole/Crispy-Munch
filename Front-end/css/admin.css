@@ -25,7 +25,10 @@ body {
 	color: #fff;
 	font-family: var(--main-font-family);
 }
-
+#errorPost,
+#editErr {
+	color: red;
+}
 .container {
 	position: absolute;
 	top: 50px;
@@ -106,7 +109,8 @@ body {
 	transition: all .5s linear;
 }
 
-.addModal {
+.addModal,
+.editModal {
 	width: 40%;
 	margin: 0 auto;
 	transition: all 0.5s;
@@ -125,7 +129,8 @@ body {
 		margin-top: 0px;
 	}
 }
-.modalbg {
+.modalbg,
+.modalbg2 {
 	display: none;
 	position: fixed; /* Stay in place */
 	left: 0;
@@ -152,7 +157,8 @@ form {
 	border: 1px solid var(--main-dark-color);
 	outline: transparent;
 }
-.addModal button {
+.addModal button,
+.editModal button {
 	float: right;
 	font-size: 1rem;
 	padding: 5px;
@@ -162,18 +168,21 @@ form {
 	margin-right: 7px;
 	cursor: pointer;
 }
-.addModal button:hover {
+.addModal button:hover,
+.editModal button:hover {
 	opacity: 0.6;
 }
 #save {
 	color: #fff;
 	background: #343a40;
 }
-#cancel {
+#cancel,
+#cancel2 {
 	color: #fff;
 	background: #dc3545;
 }
-.addModal button:after {
+.addModal button:after,
+.editModal button:after {
 	clear: both;
 }
 @media screen and (max-width: 768px) {
@@ -193,7 +202,8 @@ form {
 	}
 }
 @media (max-width: 578px) {
-	.addModal {
+	.addModal,
+	.editModal {
 		width: 70%;
 		margin: 0 auto;
 	}

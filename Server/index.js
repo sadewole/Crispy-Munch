@@ -11,6 +11,7 @@ import userRoute from './route/user';
 const app = express();
 
 // middleware
+app.use(express.static('Front-end'));
 app.use(cors());
 app.use(logger());
 app.use(bodyParser.json());

@@ -6,9 +6,9 @@ class AuthController {
   /* Create user */
   static signup(req, res) {
     const hash = Helper.hashPassword(req.body.password);
-    const newUser = [uuidv4(), req.body.username, req.body.email, hash, true];
+    const newUser = [uuidv4(), req.body.username, req.body.email, hash, 'User'];
     const text =
-      'INSERT INTO users(id, username, email, password, isAdmin) VALUES($1, $2, $3, $4, $5) returning *';
+      'INSERT INTO users(id, username, email, password, role) VALUES($1, $2, $3, $4, $5) returning *';
 
     db.query(text, newUser)
       .then(result => {

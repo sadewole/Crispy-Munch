@@ -1,5 +1,6 @@
 import uuidv4 from 'uuid/v4';
 import db from '../model/index';
+import cloudinary from '../middleware/cloudinaryConfig';
 
 class Menu {
   static getAllMenu(req, res) {
@@ -10,6 +11,7 @@ class Menu {
         if (result.rows.length >= 1) {
           res.status(200).json({
             TYPE: 'GET',
+            status: 200,
             count: result.rows.length,
             message: 'List of foods in cart',
             data: result.rows
@@ -38,6 +40,7 @@ class Menu {
         }
         return res.status(200).json({
           TYPE: 'GET',
+          status: 200,
           message: 'Request successful',
           data: result.rows[0]
         });
@@ -48,46 +51,68 @@ class Menu {
   }
 
   static addFood(req, res) {
-    const params = [uuidv4(), req.body.name, req.body.price, req.file.path];
-    const text = 'INSERT INTO menu(id, name, price, image) VALUES($1, $2, $3, $4) returning *';
+    let image = null;
+    if (!req.file) {
+      image = req.imagepath;
+    } else {
+      image = req.file.path;
+    }
 
-    db.query(text, params)
-      .then(result => {
-        res.status(201).json({
-          TYPE: 'POST',
-          data: result.rows[0],
-          message: 'Food added successfully'
+    cloudinary.uploader.upload(image, resp => {
+      const params = [uuidv4(), req.body.name, req.body.price, resp.secure_url];
+      const text = 'INSERT INTO menu(id, name, price, image) VALUES($1, $2, $3, $4) returning *';
+      db.query(text, params)
+        .then(result => {
+          res.status(201).json({
+            TYPE: 'POST',
+            status: 201,
+            data: {
+              name: req.body.name,
+              price: req.body.price,
+              image: resp.secure_url
+            },
+            message: 'Food added successfully'
+          });
+        })
+        .catch(err => {
+          res.status(500).json({
+            message: err
+          });
         });
-      })
-      .catch(err => {
-        res.status(500).json({
-          message: err
-        });
-      });
+    });
   }
 
   static updateFood(req, res) {
-    const { id } = req.params;
-    const params = [req.body.name, req.body.price, req.file.path, id];
-    const text = `UPDATE menu SET name=$1,price=$2,image=$3 WHERE id=$4`;
+    let image = null;
+    if (!req.file) {
+      image = req.imagepath;
+    } else {
+      image = req.file.path;
+    }
 
-    db.query(text, params)
-      .then(result => {
-        res.status(201).json({
-          TYPE: 'PUT',
-          data: {
-            name: req.body.name,
-            price: req.body.price,
-            image: req.file.path
-          },
-          message: 'Food updated successfully'
+    cloudinary.uploader.upload(image, resp => {
+      const params = [req.body.name, req.body.price, resp.secure_url, req.params.id];
+      const text = `UPDATE menu SET name=$1,price=$2,image=$3 WHERE id=$4`;
+
+      db.query(text, params)
+        .then(result => {
+          res.status(201).json({
+            TYPE: 'PUT',
+            status: 201,
+            data: {
+              name: req.body.name,
+              price: req.body.price,
+              image: resp.secure_url
+            },
+            message: 'Food updated successfully'
+          });
+        })
+        .catch(err => {
+          res.status(400).json({
+            message: err
+          });
         });
-      })
-      .catch(err => {
-        res.status(400).json({
-          message: err
-        });
-      });
+    });
   }
 
   static deleteFood(req, res) {
@@ -97,6 +122,7 @@ class Menu {
       .then(result => {
         res.status(200).json({
           TYPE: 'DELETE',
+          status: 200,
           message: 'Food Deleted successfully'
         });
       })

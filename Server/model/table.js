@@ -10,7 +10,7 @@ class Tables {
                       username text not null,
                       email text not null unique,
                       password text not null,
-                      isAdmin boolean not null
+                      role text not null
                   )`;
     db.query(queryText)
       .then(res => {
