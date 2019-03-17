@@ -19,7 +19,10 @@ const addFoodImage = document.querySelector('#addFoodImage');
 const editFoodForm = document.querySelector('#editFoodForm');
 const save = document.querySelector('#save');
 const errorPost = document.querySelector('#errorPost');
-// const url = 'http://localhost:3000/api/v1/';
+const logout = document.querySelector('#logout');
+const url = 'http://localhost:3000/api/v1/';
+
+let token = null;
 let id = null;
 
 const clearError1 = () => {
@@ -31,7 +34,7 @@ addFoodImage.addEventListener('input', clearError1);
 
 // Query fetch
 window.addEventListener('load', () => {
-  if (localStorage.getItem('token')) {
+  if (localStorage.getItem('token') && localStorage.getItem('token') !== 'null') {
     token = localStorage.getItem('token');
     fetch(`${url}auth/secret`, {
       headers: {
@@ -256,6 +259,24 @@ const loadAllFood = () => {
     })
     .catch(err => console.error(err));
 };
+const signOut = () => {
+  fetch(`${url}auth/logout`, {
+    method: 'GET',
+    headers: {
+      Authorization: `${token}`
+    }
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === 200) {
+        if (typeof Storage !== 'undefined') {
+          localStorage.setItem('token', `${data.token}`);
+        }
+        window.location.replace('./login.html');
+      }
+    })
+    .catch(err => console.error(err));
+};
 
 // Event functions
 const editFoodModal = () => {
@@ -304,6 +325,7 @@ window.addEventListener('load', loadAllFood);
 save.addEventListener('click', addNewFood);
 foodMenu.addEventListener('click', toggleDone);
 editFoodForm.addEventListener('click', toggleEdit);
+logout.addEventListener('click', signOut);
 
 const controlSearch = e => {
   const val = e.target.value.toUpperCase();

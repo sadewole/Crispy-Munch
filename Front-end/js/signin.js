@@ -69,7 +69,9 @@ const fetchLogin = () => {
       }
       error.innerHTML = data.message;
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      error.innerHTML = 'Invalid email or password';
+    });
 };
 
 const validateLogin = e => {
