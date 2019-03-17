@@ -17,8 +17,9 @@ passport.use(
     },
     async (payload, done) => {
       try {
-        const text = `select * from user where id = $1`;
-        const user = db.query(text, payload.sub);
+        const text = `select * from users where id = $1`;
+
+        const user = await db.query(text, [payload.sub]);
 
         if (!user) return done(null, false);
 

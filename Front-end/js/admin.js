@@ -22,14 +22,32 @@ const errorPost = document.querySelector('#errorPost');
 // const url = 'http://localhost:3000/api/v1/';
 let id = null;
 
-const clearError = () => {
+const clearError1 = () => {
   errorPost.innerText = '';
 };
-addFoodName.addEventListener('input', clearError);
-addFoodPrice.addEventListener('input', clearError);
-addFoodImage.addEventListener('input', clearError);
+addFoodName.addEventListener('input', clearError1);
+addFoodPrice.addEventListener('input', clearError1);
+addFoodImage.addEventListener('input', clearError1);
 
 // Query fetch
+window.addEventListener('load', () => {
+  if (localStorage.getItem('token')) {
+    token = localStorage.getItem('token');
+    fetch(`${url}auth/secret`, {
+      headers: {
+        Authorization: `${token}`
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status !== 200 && data.data.role !== 'Admin') {
+          window.location.replace('./login.html');
+        }
+      });
+  } else {
+    window.location.replace('./login.html');
+  }
+});
 
 const postNewFood = () => {
   const formData = new FormData(document.forms.myForm);
@@ -180,6 +198,9 @@ const saveEditedFood = () => {
 
   fetch(`${url}menu/${id}`, {
     method: 'PUT',
+    headers: {
+      Authorization: `${token}`
+    },
     body: editFoodData
   })
     .then(res => res.json())
@@ -218,9 +239,13 @@ const editFood = () => {
     .catch(err => console.error(err));
 };
 
-// Load all food once login
+// Load all food once logged in
 const loadAllFood = () => {
-  fetch(`${url}menu`)
+  fetch(`${url}menu`, {
+    headers: {
+      Authorization: `${token}`
+    }
+  })
     .then(res => res.json())
     .then(datas => {
       if (datas.status === 200 || datas.data >= 1) {

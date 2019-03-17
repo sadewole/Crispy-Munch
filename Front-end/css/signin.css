@@ -28,8 +28,7 @@ img {
 	border-radius: 50%;
 }
 
-#errReg,
-#errLog {
+#error {
 	color: red;
 }
 

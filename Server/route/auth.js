@@ -12,5 +12,8 @@ router
 router
   .route('/auth/secret')
   .get(passport.authenticate('jwt', { session: false }), authController.secret);
+router
+  .route('/auth/logout')
+  .get(passport.authenticate('jwt', { session: false }), authController.logout);
 
 export default router;

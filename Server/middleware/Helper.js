@@ -23,11 +23,11 @@ class Helper {
   /**
    * Gnerate Token
    */
-  static generateToken(id) {
+  static generateToken(user) {
     const token = jwt.sign(
       {
         iss: 'codeSecret',
-        sub: id,
+        sub: user.id,
         iat: new Date().getTime(),
         exp: new Date().setDate(new Date().getDate() + 1)
       },

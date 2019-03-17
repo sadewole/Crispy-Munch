@@ -1,7 +1,9 @@
+const submitReg = document.querySelector('#submitReg');
+const nameReg = document.querySelector('#nameReg');
+const emailReg = document.querySelector('#emailReg');
+const passReg = document.querySelector('#passReg');
 const error = document.querySelector('#error');
-const emailLog = document.querySelector('#emailLog');
-const passLog = document.querySelector('#passLog');
-const submitLog = document.querySelector('#submitLog');
+const passConfirm = document.querySelector('#passConfirm');
 const url = 'http://localhost:3000/api/v1/';
 
 let token = null;
@@ -15,8 +17,15 @@ const validateEmail = emailVal => {
   return reg.test(emailVal);
 };
 
-emailLog.addEventListener('input', clearError);
-passLog.addEventListener('input', clearError);
+const validatePassword = passwordVal => {
+  const pas = /^(?=.*?[\w+])(?=(.*[\W+]?))(?!.*\s).{5,}$/;
+  return pas.test(passwordVal);
+};
+
+emailReg.addEventListener('input', clearError);
+passReg.addEventListener('input', clearError);
+nameReg.addEventListener('input', clearError);
+passConfirm.addEventListener('input', clearError);
 
 window.addEventListener('load', () => {
   if (localStorage.getItem('token') && localStorage.getItem('token') !== 'null') {
@@ -42,16 +51,17 @@ window.addEventListener('load', () => {
   }
 });
 
-const fetchLogin = () => {
-  fetch(`${url}auth/signin`, {
+const fetchReg = () => {
+  fetch(`${url}auth/signup`, {
     method: 'POST',
     headers: {
       Accept: 'application/json, text/plain, */*',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      email: emailLog.value,
-      password: passLog.value
+      username: nameReg.value,
+      email: emailReg.value,
+      password: passReg.value
     })
   })
     .then(res => res.json())
@@ -60,11 +70,7 @@ const fetchLogin = () => {
         if (typeof Storage !== 'undefined') {
           localStorage.setItem('token', `${data.token}`);
         }
-        if (data.data.role === 'Admin') {
-          window.location.replace('./admin.html');
-          return;
-        }
-        window.location.replace('./menu.html');
+        window.location.href = './menu.html';
         return;
       }
       error.innerHTML = data.message;
@@ -72,16 +78,24 @@ const fetchLogin = () => {
     .catch(err => console.error(err));
 };
 
-const validateLogin = e => {
+const validateReg = e => {
   e.preventDefault();
-  if (!validateEmail(emailLog.value.trim())) {
+  if (nameReg.value === '') {
+    error.innerHTML = 'Enter your username';
+    return;
+  }
+  if (!validateEmail(emailReg.value.trim())) {
     error.innerHTML = 'Enter a valid email';
     return;
   }
-  if (passLog.value === '') {
-    error.innerHTML = 'Enter your password';
+  if (!validatePassword(passReg.value.trim())) {
+    error.innerHTML = 'Password must not contain space and must be 5 characters or more';
+    return;
   }
-  fetchLogin();
+  if (passConfirm.value !== passReg.value) {
+    error.innerHTML = 'Password do not match';
+  }
+  fetchReg();
 };
 
-submitLog.addEventListener('click', validateLogin);
+submitReg.addEventListener('click', validateReg);

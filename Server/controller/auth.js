@@ -12,11 +12,12 @@ class AuthController {
 
     db.query(text, newUser)
       .then(result => {
-        const token = Helper.generateToken(result.rows[0].id);
-        res.status(201).json({
+        const token = Helper.generateToken(result.rows[0]);
+        res.status(200).json({
           TYPE: 'POST',
-          status: 201,
-          data: token,
+          status: 200,
+          data: result.rows[0],
+          token,
           message: 'Registered successfully'
         });
       })
@@ -36,13 +37,28 @@ class AuthController {
         TYPE: 'POST',
         status: 200,
         message: 'Login successful',
-        data: token
+        data: req.user,
+        token
       });
     }
   }
 
   static secret(req, res) {
-    res.send('Hey you requested for secret');
+    res.status(200).json({
+      TYPE: 'GET',
+      data: req.user.rows[0],
+      status: 200,
+      secret: 'resource'
+    });
+  }
+
+  static logout(req, res) {
+    res.status(200).json({
+      TYPE: 'GET',
+      status: 200,
+      token: 'null',
+      message: 'Logout successfully'
+    });
   }
 }
 
