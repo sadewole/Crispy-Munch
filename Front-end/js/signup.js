@@ -94,6 +94,7 @@ const validateReg = e => {
   }
   if (passConfirm.value !== passReg.value) {
     error.innerHTML = 'Password do not match';
+    return;
   }
   fetchReg();
 };

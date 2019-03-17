@@ -11,6 +11,7 @@ class UserTable {
         if (result.rows.length >= 1) {
           res.status(200).json({
             TYPE: 'GET',
+            status: 200,
             count: result.rows.length,
             message: 'List of all customers',
             data: result.rows
@@ -82,7 +83,8 @@ class UserTable {
       .then(result => {
         res.status(200).json({
           TYPE: 'DELETE',
-          message: 'Food Deleted successfully'
+          status: 200,
+          message: 'Account Deleted successfully'
         });
       })
       .catch(err => {

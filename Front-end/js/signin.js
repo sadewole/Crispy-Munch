@@ -82,6 +82,7 @@ const validateLogin = e => {
   }
   if (passLog.value === '') {
     error.innerHTML = 'Enter your password';
+    return;
   }
   fetchLogin();
 };

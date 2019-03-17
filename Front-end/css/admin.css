@@ -229,16 +229,17 @@ form {
 	border-color: #333;
 }
 
+.userInfo .table td:nth-child(5),
 .userInfo .table td:nth-child(3),
 .userInfo .table td:nth-child(4) {
 	width: 10%;
 	text-align: center;
 }
-.userInfo .table td:nth-child(1) {
+.userInfo .table td:nth-child(2) {
 	width: 50%;
 }
-.userInfo .table td:nth-child(2) {
-	width: 30%;
+.userInfo .table td:nth-child(1) {
+	width: 20%;
 }
 .userInfo .table td {
 	padding: 0.5rem;
