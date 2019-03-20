@@ -43,7 +43,9 @@ class allCart {
           <img src="${info.food.image}" alt="${info.food.name}">
       </span>
       ${info.food.name}</td>
-      <td><input type="number" class="quantity" name="quantity" value="${info.quantity}"></td>
+      <td><input type="number" class="quantity" data-id="${info.id}" name="quantity" value="${
+        info.quantity
+      }"></td>
       <td><i class="fas fa-trash" data-id="${info.id}"></i></td>
       <td class="price">₦${info.food.price}</td>
       <td class="subTotal">₦</td>
@@ -74,6 +76,7 @@ class allCart {
   }
 }
 
+// delete food from cart
 const deleteFoodFromCart = () => {
   fetch(`${url}order/${id}`, {
     method: 'DELETE',
@@ -93,6 +96,28 @@ const deleteFoodFromCart = () => {
 
 const makePay = () => {
   fetch(`${url}order`);
+};
+
+// change quantity
+const updateFood = quantity => {
+  fetch(`${url}order/${id}`, {
+    method: 'PUT',
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+      Authorization: `${token}`
+    },
+    body: JSON.stringify({
+      quantity
+    })
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === 200) {
+        alert(data.message);
+      }
+    })
+    .catch(err => console.error(err));
 };
 
 const loadMyCart = () => {
@@ -158,11 +183,13 @@ window.addEventListener('load', () => {
 });
 
 const checkQuantity = e => {
-  const quantity = e.target;
-
+  let quantity = e.target;
+  id = quantity.getAttribute('data-id');
   if (quantity.value <= 0) {
     quantity.value = 1;
   }
+  quantity = Number(quantity.value);
+  updateFood(quantity);
   updateTotal();
 };
 
@@ -174,7 +201,6 @@ const toggleDone = e => {
   }
   if (e.target.matches('i.fa-trash')) {
     id = e.target.getAttribute('data-id');
-    console.log(id);
     deleteFoodFromCart();
   }
   if (e.target.matches('input')) {

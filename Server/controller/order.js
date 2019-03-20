@@ -120,12 +120,14 @@ class OrderTable {
 
   static updateOrder(req, res) {
     const params = [req.body.quantity, req.params.id];
+    console.log(req.body.quantity);
+
     const text = `UPDATE orders SET quantity=$1 WHERE id=$2`;
 
     db.query(text, params)
       .then(result => {
         res.status(200).json({
-          TYPE: 'PATCH',
+          TYPE: 'PUT',
           status: 200,
           message: 'Order updated successfully',
           data: result.rows[0]

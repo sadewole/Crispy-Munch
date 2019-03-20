@@ -12,7 +12,7 @@ router
 router
   .route('/order/:id')
   .get(orderController.getSingleOrder)
-  .patch(passport.authenticate('jwt', { session: false }), orderController.updateOrder)
+  .put(passport.authenticate('jwt', { session: false }), orderController.updateOrder)
   .delete(passport.authenticate('jwt', { session: false }), orderController.deleteOrder);
 
 router
