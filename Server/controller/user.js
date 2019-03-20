@@ -49,33 +49,6 @@ class UserTable {
       });
   }
 
-  static getUserOrders(req, res) {
-    const text = `SELECT * from orders WHERE user_id=$1`;
-
-    db.query(text, [req.params.id])
-      .then(result => {
-        if (!result.rows.length) {
-          return res.status(404).json({
-            message: 'User orders not found'
-          });
-        }
-        return res.status(200).json({
-          TYPE: 'GET',
-          message: 'Request successful',
-          data: result.rows.map(ls => {
-            return {
-              id: ls.id,
-              quantity: ls.quantity,
-              food: ls.menu_id
-            };
-          })
-        });
-      })
-      .catch(err => {
-        res.status(400).json(err);
-      });
-  }
-
   static deleteUser(req, res) {
     const text = `DELETE from users where id = $1`;
 

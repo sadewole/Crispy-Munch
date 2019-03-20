@@ -13,7 +13,4 @@ router
   .get(passport.authenticate('jwt', { session: false }), userController.getSingleUser)
   .delete(passport.authenticate('jwt', { session: false }), userController.deleteUser);
 
-router
-  .route('/user/:id/order')
-  .get(passport.authenticate('jwt', { session: false }), userController.getUserOrders);
 export default router;

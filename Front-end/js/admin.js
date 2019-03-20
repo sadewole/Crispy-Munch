@@ -80,7 +80,7 @@ class GenericDisplay {
       output += `<tr>
       <td><img src="${info.image}" alt=""></td>
       <td>${info.name}</td>
-      <td>${info.price}</td>
+      <td>₦${info.price}</td>
       <td class="edit"><i class="far fa-edit" data-id="${info.id}"></i></td>
       <td class="delete"><i class="far fa-trash-alt" data-id="${info.id}"></i></td>
   </tr>`;

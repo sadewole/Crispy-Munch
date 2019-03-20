@@ -21,6 +21,15 @@ class Helper {
   }
 
   /**
+   * Query menu
+   */
+  static checkMenu(id) {
+    const text = `SELECT * from menu WHERE id = $1`;
+    const confirmCheck = db.query(text, [id]);
+    return confirmCheck;
+  }
+
+  /**
    * Gnerate Token
    */
   static generateToken(user) {

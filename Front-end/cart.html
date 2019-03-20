@@ -39,61 +39,33 @@
 
 <div class="container">
 <div class="contain">
-  <h1>My Cart</h1>
-  <div class="all-cart">
-    <table class="table table-responsive">
-      <thead>
-        <tr>
-          <th>Food Item</th>
-          <th>Quantity</th>
-          <th>Remove</th>
-          <th>Unit Price</th>
-          <th>Subtotal</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="orderImg">
-              <img src="img/custom-img/food.jpg" alt="">
-          </span>
-            Beef and egg</td>
-          <td>1</td>
-          <td><i class="fas fa-trash"></i></td>
-          <td>$789</td>
-          <td>$789</td>
-        </tr>
-          <td><span class="orderImg">
-              <img src="img/custom-img/food.jpg" alt="">
-          </span>
-            Beef and egg</td>
-          <td>1</td>
-          <td><i class="fas fa-trash"></i></td>
-          <td>$789</td>
-          <td>$789</td>
-        </tr>
-      </tbody>
-    </table>
-    <button class="btn btn-tertiary" id="proceed">Proceed to checkout</button>
+  <h1>My Cart <i class="fas fa-shopping-cart"></i></h1>
+  <div class="showCart">
+    <h1 id="noCart"></h1>
+    <div class="all-cart" id="myCart">
   </div>
-  <div class="con-cart">
-    <form class="form">
-      <div class="form-group">
-        <label >Email:</label>
-        <input type="text" class="form-control">
+    <div class="con-cart">
+        <form class="form">
+          <div class="form-group">
+            <label >Email:</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label >Phone number:</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label >Address:</label>
+            <textarea type="text" class="form-control"></textarea>
+          </div>
+          <button class="btn btn-secondary" id="payment">Pay now</button>
+          <button class="btn btn-danger" id="cancel">Preview orders</button>
+        </form>
+      
       </div>
-      <div class="form-group">
-        <label >Phone number:</label>
-        <input type="text" class="form-control">
-      </div>
-      <div class="form-group">
-        <label >Address:</label>
-        <textarea type="text" class="form-control"></textarea>
-      </div>
-      <button class="btn btn-secondary">Pay now</button>
-      <button class="btn btn-danger" id="cancel">Preview orders</button>
-    </form>
-  
   </div>
+</div>
+
 <!-- footer -->
   <div class="footer">
     <div class="footer-grid hide-on-small">
@@ -145,7 +117,6 @@
           </div>
     </div>
   </div>
-</div>
 
         <script src="js/nav.js"></script>
         <script src="js/cart.js"></script>
