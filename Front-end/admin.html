@@ -1,271 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin Food Menu</title>
-    <link rel="stylesheet" href="css/admin.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Admin Food Menu</title>
+  <link rel="stylesheet" href="css/admin.css">
 </head>
+
 <body>
   <!-- nav menu -->
-        <div class="">
-                <nav class="nav">
-                  <div class="nav-flex-md">
-                      <div class="nav-flex">
-                          <a href="./index.html" class="crispy1">
-                            <img src="./img/logo.png" alt="logo" width="30px" height="30px">
-                          </a>
-                          <button class="hide-on-bg" id="opennav">
-                            <a href="#" id="openup">|||</a>
-                          </button>
-                      </div>
-                      
-                        <div class="nav-pills">
-                              <ul >
-                                <li class="nav-item hide-on-bg" >
-                                    <a href="./index.html" class="crispy2">
-                                      <img src="./img/logo.png" alt="logo" width="30px" height="30px">
-                                    </a>
-                                </li>
-                                <li class="nav-item" id="menu">
-                                  <span><i class="fas fa-file-contract db"></i></span>
-                                  <a href="#" class="nav-link" >Food Menu</a>
-                                </li>
-                                <li class="nav-item" id="customer">
-                                  <span><i class="fas fa-users db"></i></span>
-                                  <a href="#" class="nav-link">Customer</a>
-                                </li>
-                                <li class="nav-item" id="order">
-                                  <span><i class="fas fa-history db"></i></span>
-                                  <a href="#" class="nav-link">Order history</a>
-                                </li>
-                                <li class="nav-item">
-                                  <span><i class="fas fa-sign-out-alt db"></i></span>
-                                  <a href="#" class="nav-link">Sign Out</a>
-                                </li>
-                              </ul>
-                      </div>
-                  </div>
-                  <div class="navModal"></div>
-                </nav>
-              </div>
+  <div class="">
+    <nav class="nav">
+      <div class="nav-flex-md">
+        <div class="nav-flex">
+          <a href="./index.html" class="crispy1">
+            <img src="./img/logo.png" alt="logo" width="30px" height="30px">
+          </a>
+          <button class="hide-on-bg" id="opennav">
+            <a href="#" id="openup">|||</a>
+          </button>
+        </div>
 
-              <!-- add food modal -->
-              <div class="modalbg">
-                <div class="addModal">
-                  <form>
-                    <div class="form-group">
-                      <label>Name:</label>
-                      <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                      <label>Price:</label>
-                      <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                      <label>Image:</label>
-                      <input type="file" class="form-control">
-                    </div>
-                    <button id="save" class="close">Save</button>
-                    <button id="cancel" >Cancel</button>
-                  </form>
-                </div>
-              </div>
+        <div class="nav-pills">
+          <ul>
+            <li class="nav-item hide-on-bg">
+              <a href="./index.html" class="crispy2">
+                <img src="./img/logo.png" alt="logo" width="30px" height="30px">
+              </a>
+            </li>
+            <li class="nav-item" id="menu">
+              <span><i class="fas fa-file-contract db"></i></span>
+              <a href="#" class="nav-link">Food Menu</a>
+            </li>
+            <li class="nav-item" id="customer">
+              <span><i class="fas fa-users db"></i></span>
+              <a href="#" class="nav-link">Customer</a>
+            </li>
+            <li class="nav-item" id="order">
+              <span><i class="fas fa-history db"></i></span>
+              <a href="#" class="nav-link">Order history</a>
+            </li>
+            <li class="nav-item">
+              <span><i class="fas fa-sign-out-alt db"></i></span>
+              <a href="#" class="nav-link" id="logout">Sign Out</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="navModal"></div>
+    </nav>
+  </div>
 
-              <!-- container -->
-              <div class="container">
-               
+  <!-- add food modal -->
+  <div class="modalbg">
+    <div class="addModal">
+      <form method="POST" enctype="multipart/form-data" id="myForm">
+        <div class="form-group">
+          <label>Name:</label>
+          <input type="text" class="form-control" name="name" id="addFoodName">
+        </div>
+        <div class="form-group">
+          <label>Price:</label>
+          <input type="text" class="form-control" name="price" id="addFoodPrice">
+        </div>
+        <div class="form-group">
+          <label>Image:</label>
+          <input type="file" class="form-control" name="image" id="addFoodImage">
+        </div>
+        <p id="errorPost"></p>
+        <button id="save" type="submit" class="close">Save</button>
+        <button id="cancel" type="button">Cancel</button>
+      </form>
+    </div>
+  </div>
 
-                <div id="menuNap">
-                  <button class="add-menu">Add Menu</button>
-                  <!-- food menu -->
-                <div class="foodMenu">
-                        <table class="table table-responsive">
-                            <thead>
-                                <tr>
-                                    <td></td>
-                                    <td>Name</td>
-                                    <td>Price</td>
-                                    <td>Edit</td>
-                                    <td>Delete</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><img src="img/mafe.jpg" alt=""></td>
-                                    <td>Amala and chicken</td>
-                                    <td>$200</td>
-                                    <td class="edit"><i class="far fa-edit"></i></td>
-                                    <td class="delete"><i class="far fa-trash-alt"></i></td>
-                                </tr>
-                                <tr>
-                                    <td><img src="img/mafe.jpg" alt=""></td>
-                                    <td>Amala and chicken</td>
-                                    <td>$200</td>
-                                    <td class="edit"><i class="far fa-edit"></i></td>
-                                    <td class="delete"><i class="far fa-trash-alt"></i></td>
-                                </tr>
-                                <tr>
-                                    <td><img src="img/mafe.jpg" alt=""></td>
-                                    <td>Amala and chicken</td>
-                                    <td>$200</td>
-                                    <td class="edit"><i class="far fa-edit"></i></td>
-                                    <td class="delete"><i class="far fa-trash-alt"></i></td>
-                                </tr>
-                                <tr>
-                                    <td><img src="img/mafe.jpg" alt=""></td>
-                                    <td>Amala and chicken</td>
-                                    <td>$200</td>
-                                    <td class="edit"><i class="far fa-edit"></i></td>
-                                    <td class="delete"><i class="far fa-trash-alt"></i></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div id="customerNap">
-                                <h1>List of all users</h1>
-                                <div class="contain">
-                                    <div>
-                                      <form class="form">
-                                        <div class="form-inline">
-                                          <label>Search:</label>
-                                          <input type="text" name="search" id="searchUser">
-                                        </div>
-                                      </form>
-                                    </div>
-                                    <!-- list of users -->
-                                    <div class="userInfo">
-                                        <table class="table table-responsive">
-                                            <thead>
-                                                <tr>
-                                                    <td>Name</td>
-                                                    <td>Position</td>
-                                                    <td>Promote</td>
-                                                    <td>Delete</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="findUser">
-                                                <tr>
-                                                    <td>Tola Akinrotoye</td>
-                                                    <td>Admin</td>
-                                                    <td class="promote"><i class="fas fa-upload"></i></td>
-                                                    <td class="delete"><i class="far fa-trash-alt"></i></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Desmond Elliot</td>
-                                                    <td>Customer</td>
-                                                    <td class="promote"><i class="fas fa-upload"></i></td>
-                                                    <td class="delete"><i class="far fa-trash-alt"></i></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Wikky James</td>
-                                                    <td>Customer</td>
-                                                    <td class="promote"><i class="fas fa-upload"></i></td>
-                                                    <td class="delete"><i class="far fa-trash-alt"></i></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Fela Durotoye</td>
-                                                    <td>Customer</td>
-                                                    <td class="promote"><i class="fas fa-upload"></i></td>
-                                                    <td class="delete"><i class="far fa-trash-alt"></i></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>  
-                </div>
-                <div id="orderNap">
-                        <div class="profit">
-                                <h1><i class="fas fa-hand-holding-usd"></i>Total Payment</h1>
-                                  $789,000.00
-                              </div>
-                                 <!-- food menu -->
-                                 <div class="contain">
-                                  <table class="table table-responsive">
-                                      <thead>
-                                          <tr>
-                                              <th>Ordered date</th>
-                                              <th>Ordered Id</th>
-                                              <th>Food</th>
-                                              <th>Quantity</th>
-                                              <th>User Id</th>
-                                              <th>Address</th>
-                                              <th>Phone number</th>
-                                              <th>Price</th>
-                                              <th>Status</th>
-                                              <th>Delete</th>
-                                          </tr>
-                                      </thead>
-                                  
-                                      <tbody>
-                                         <tr>
-                                           <td data-label="Ordered date">27-03-04</td>
-                                           <td data-label="Ordered Id">1</td>
-                                           <td data-label="Food">Beef and egg</td>
-                                           <td data-label="Quantity">3</td>
-                                           <td data-label="User Id">1</td>
-                                           <td data-label="Address">8/10 ogidan crescent, ifesowapo, akute, ogun state</td>
-                                           <td data-label="Phone number">9097685672</td>
-                                           <td data-label="Price">$800</td>
-                                           <td data-label="Status">Processing</td>
-                                           <td data-label="Delete"><button>cancel</button></td>
-                                         </tr>
-                                         <tr>
-                                           <td data-label="Ordered date">27-03-04</td>
-                                           <td data-label="Ordered Id"> 1</td>
-                                           <td data-label="Food">Beef and egg</td>
-                                           <td data-label="Quantity">3</td>
-                                           <td data-label="User Id">1</td>
-                                           <td data-label="Address">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore consectetur voluptate quae totam consequatur animi maiores sit praesentium possimus? Recusandae.</td>
-                                           <td data-label="Phone number">9097685672</td>
-                                           <td data-label="Price">$800</td>
-                                           <td data-label="Status">Complete</td>
-                                           <td data-label="Delete"><button>cancel</button></td>
-                                         </tr>
-                                         <tr>
-                                           <td data-label="Ordered date"> 27-03-04</td>
-                                           <td data-label="Ordered Id">1</td>
-                                           <td data-label="Food">Beef and egg</td>
-                                           <td data-label="Quantity">3</td>
-                                           <td data-label="User Id">1</td>
-                                           <td data-label="Address">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia quibusdam repellat laudantium suscipit quam delectus quo rerum?</td>
-                                           <td data-label="Phone number">9097685672</td>
-                                           <td data-label="Price">$800</td>
-                                           <td data-label="Status">Processing</td>
-                                           <td data-label="Delete"><button>cancel</button></td>
-                                         </tr>
-                                      </tbody>
-                                  </table>
-                              </div>
-                            </div>
-                </div>
-              </div>
+  <!-- container -->
+  <div class="container">
 
 
-                 <!-- edit food modal
-                 <div class="modalbg">
-                    <div class="addModal">
-                      <form>
-                        <div class="form-group">
-                          <label>Name:</label>
-                          <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                          <label>Price:</label>
-                          <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                          <label>Image:</label>
-                          <input type="file" class="form-control">
-                        </div>
-                        <button id="save" class="close">Save</button>
-                        <button id="cancel" class="close">Cancel</button>
-                      </form>
-                    </div>
-                  </div> -->
-    <script src="js/navadmin.js"></script>
-    <script src="js/admin.js"></script>
+    <div id="menuNap">
+      <button class="add-menu">Add Menu</button>
+      <!-- food menu -->
+      <div class="foodMenu">
+        <h1 id="noMenu"></h1>
+
+      </div>
+    </div>
+    <div id="customerNap">
+      <h1>List of all users</h1>
+      <div class="contain">
+        <div>
+          <form class="form">
+            <div class="form-inline">
+              <label>Search:</label>
+              <input type="text" name="search" id="searchUser">
+            </div>
+          </form>
+        </div>
+        <!-- list of users -->
+        <div class="userInfo" >
+    
+        </div>
+      </div>
+    </div>
+    <div id="orderNap">
+      <div class="profit">
+        <h1><i class="fas fa-hand-holding-usd"></i>Total Payment</h1>
+        $789,000.00
+      </div>
+      <!-- food menu -->
+      <div class="contain">
+        <table class="table table-responsive">
+          <thead>
+            <tr>
+              <th>Ordered date</th>
+              <th>Ordered Id</th>
+              <th>Food</th>
+              <th>Quantity</th>
+              <th>User Id</th>
+              <th>Address</th>
+              <th>Phone number</th>
+              <th>Price</th>
+              <th>Status</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td data-label="Ordered date">27-03-04</td>
+              <td data-label="Ordered Id">1</td>
+              <td data-label="Food">Beef and egg</td>
+              <td data-label="Quantity">3</td>
+              <td data-label="User Id">1</td>
+              <td data-label="Address">8/10 ogidan crescent, ifesowapo, akute, ogun state</td>
+              <td data-label="Phone number">9097685672</td>
+              <td data-label="Price">$800</td>
+              <td data-label="Status">Processing</td>
+              <td data-label="Delete"><button>cancel</button></td>
+            </tr>
+            <tr>
+              <td data-label="Ordered date">27-03-04</td>
+              <td data-label="Ordered Id"> 1</td>
+              <td data-label="Food">Beef and egg</td>
+              <td data-label="Quantity">3</td>
+              <td data-label="User Id">1</td>
+              <td data-label="Address">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore consectetur
+                voluptate quae totam consequatur animi maiores sit praesentium possimus? Recusandae.</td>
+              <td data-label="Phone number">9097685672</td>
+              <td data-label="Price">$800</td>
+              <td data-label="Status">Complete</td>
+              <td data-label="Delete"><button>cancel</button></td>
+            </tr>
+            <tr>
+              <td data-label="Ordered date"> 27-03-04</td>
+              <td data-label="Ordered Id">1</td>
+              <td data-label="Food">Beef and egg</td>
+              <td data-label="Quantity">3</td>
+              <td data-label="User Id">1</td>
+              <td data-label="Address">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia quibusdam repellat
+                laudantium suscipit quam delectus quo rerum?</td>
+              <td data-label="Phone number">9097685672</td>
+              <td data-label="Price">$800</td>
+              <td data-label="Status">Processing</td>
+              <td data-label="Delete"><button>cancel</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+  <!-- edit food modal -->
+  <div class="modalbg2">
+    <div class="editModal" id="editFoodForm">
+
+    </div>
+  </div>
+  <script src="js/navadmin.js"></script>
+  <script src="js/admin.js"></script>
 </body>
+
 </html>
