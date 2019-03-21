@@ -210,6 +210,7 @@ const toggleDone = e => {
   updateTotal();
 };
 
+// Event listener
 logout.addEventListener('click', signOut);
 showCart.addEventListener('click', toggleDone);
 payment.addEventListener('click', makePay);
