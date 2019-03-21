@@ -51,7 +51,9 @@ class GenericMenu {
   }
 }
 
-const postFood = () => {
+const postFood = id => {
+  console.log(id);
+
   fetch(`${url}order`, {
     method: 'POST',
     headers: {
@@ -68,6 +70,7 @@ const postFood = () => {
     .then(data => {
       if (data.status === 200) {
         alert(data.message);
+        console.log(data.data);
       }
     })
     .catch(err => {
@@ -104,7 +107,7 @@ const loadAllFood = () => {
       if (data.status === 200 || data.data >= 1) {
         GenericMenu.availableFood(data);
       } else {
-        foodMenu.innerHTML = data.message;
+        document.querySelector('#noMenu').innerHTML = data.message;
       }
     })
     .catch(err => {
@@ -115,7 +118,7 @@ const loadAllFood = () => {
 const toggleAddFood = e => {
   if (e.target.matches('i.fa-cart-plus')) {
     id = e.target.getAttribute('data-id');
-    postFood();
+    postFood(id);
   }
 };
 

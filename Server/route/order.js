@@ -17,6 +17,6 @@ router
 
 router
   .route('/user/:id/order')
-  .get(passport.authenticate('jwt', { session: false }), orderController.getUserOrders);
-// .post(passport.authenticate('jwt', { session: false }), userController.postUserOrders);
+  .get(passport.authenticate('jwt', { session: false }), orderController.getUserOrders)
+  .put(passport.authenticate('jwt', { session: false }), orderController.updateUserOrders);
 export default router;

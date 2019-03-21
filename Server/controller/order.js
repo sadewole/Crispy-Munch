@@ -98,29 +98,31 @@ class OrderTable {
           message: 'Cart is empty'
         });
       }
-      const rp = await Helper.checkMenu(rows[0].menu_id);
-      const food = rp.rows[0];
 
+      const data = [];
+      for (let i = 0; i < rows.length; i++) {
+        const food = await Helper.checkMenu(rows[i].menu_id);
+        data.push({
+          id: rows[i].id,
+          quantity: rows[i].quantity,
+          food
+        });
+      }
       return res.status(200).json({
         TYPE: 'GET',
         message: 'Request successful',
         status: 200,
-        data: rows.map(ls => {
-          return {
-            id: ls.id,
-            quantity: ls.quantity,
-            food
-          };
-        })
+        data
       });
     } catch (err) {
-      return res.status(400).json({ err });
+      return res.status(400).json({
+        err
+      });
     }
   }
 
   static updateOrder(req, res) {
     const params = [req.body.quantity, req.params.id];
-    console.log(req.body.quantity);
 
     const text = `UPDATE orders SET quantity=$1 WHERE id=$2`;
 
@@ -130,6 +132,28 @@ class OrderTable {
           TYPE: 'PUT',
           status: 200,
           message: 'Order updated successfully',
+          data: result.rows[0]
+        });
+      })
+      .catch(err => {
+        res.status(400).json({
+          message: err
+        });
+      });
+  }
+
+  static updateUserOrders(req, res) {
+    const { address, email, phoneNo } = req.body;
+
+    const params = [address, email, phoneNo, req.params.id];
+    const text = `UPDATE orders SET address=$1,email=$2,phoneNo=$3 WHERE id=$4`;
+
+    db.query(text, params)
+      .then(result => {
+        res.status(200).json({
+          TYPE: 'PUT',
+          status: 200,
+          message: 'Food ordered successfully',
           data: result.rows[0]
         });
       })
