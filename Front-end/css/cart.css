@@ -36,6 +36,13 @@
 img {
 	max-width: 100%;
 }
+#error {
+	color: red;
+}
+.addDetails {
+	border-bottom: 1px solid #fff;
+	margin-bottom: 15px;
+}
 .con-cart {
 	display: none;
 	padding-top: 1.5rem;
@@ -59,10 +66,15 @@ img {
 	padding: 5px;
 }
 #noCart {
+	width: 100%;
 	margin: 0 auto;
+	padding: 0 30px;
+}
+#noCart h1 {
 	font-size: 5rem;
 	color: mintcream;
 }
+
 .table {
 	width: 100%;
 	margin-bottom: 1rem;
@@ -100,6 +112,7 @@ img {
 	margin-bottom: 1rem;
 	font-size: 1rem;
 	padding: 0.5rem;
+	font-family: var(--main-font-family);
 	border-radius: 5px;
 	border: 1px solid var(--main-dark-color);
 	outline: transparent;
@@ -135,8 +148,11 @@ img {
 	bottom: 0%; */
 }
 @media screen and (max-width: 578px) {
-	#noCart {
+	#noCart h1 {
 		font-size: 3.5rem;
+	}
+	#noCart {
+		padding: 0;
 	}
 	.table td img {
 		display: none;

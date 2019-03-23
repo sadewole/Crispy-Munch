@@ -9,21 +9,23 @@ class Menu {
     db.query(text)
       .then(result => {
         if (result.rows.length >= 1) {
-          res.status(200).json({
+          return res.status(200).json({
             TYPE: 'GET',
             status: 200,
             count: result.rows.length,
             message: 'List of foods in cart',
             data: result.rows
           });
-        } else {
-          res.status(200).json({
-            message: 'Menu is empty'
-          });
         }
+
+        return res.status(200).json({
+          TYPE: 'GET',
+          status: 200,
+          message: 'Menu is empty'
+        });
       })
       .catch(err => {
-        res.status(500).json(err);
+        return res.status(400).json(err);
       });
   }
 

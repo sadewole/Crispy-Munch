@@ -281,19 +281,24 @@ tr:nth-of-type(odd) {
 	text-align: center;
 }
 #orderNap .table td:nth-child(1),
+#orderNap .table td:nth-child(3),
 #orderNap .table td:nth-child(4),
-#orderNap.table td:nth-child(8),
+#orderNap .table td:nth-child(8),
 #orderNap .table td:nth-child(9),
 #orderNap .table td:nth-child(10) {
 	width: 5%;
 }
 
-#orderNap.table td:nth-child(2),
-#orderNap .table td:nth-child(3),
+#orderNap .table td:nth-child(2),
 #orderNap .table td:nth-child(5),
 #orderNap .table td:nth-child(7) {
 	width: 10%;
 }
+
+#orderNap .table td:nth-child(6) {
+	width: 30%;
+}
+
 #orderNap .table td:nth-child(10) button {
 	cursor: pointer;
 	padding: 9px;
@@ -316,6 +321,15 @@ tr:nth-of-type(odd) {
 	color: #fff;
 	background: #333;
 	border-color: #32383e;
+}
+
+#orderNap .table tbody a {
+	color: inherit;
+}
+
+#orderNap .table select {
+	border-radius: 5px;
+	outline: transparent;
 }
 
 @media screen and (max-width: 768px), (min-device-width: 768px) and (max-device-width: 1024px) {
@@ -353,6 +367,7 @@ tr:nth-of-type(odd) {
 	#orderNap .table td:nth-child(2),
 	#orderNap .table td:nth-child(3),
 	#orderNap .table td:nth-child(5),
+	#orderNap .table td:nth-child(6),
 	#orderNap .table td:nth-child(7) {
 		width: inherit;
 	}

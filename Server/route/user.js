@@ -11,6 +11,7 @@ router
 router
   .route('/user/:id')
   .get(passport.authenticate('jwt', { session: false }), userController.getSingleUser)
+  .put(passport.authenticate('jwt', { session: false }), userController.upgradeUser)
   .delete(passport.authenticate('jwt', { session: false }), userController.deleteUser);
 
 export default router;

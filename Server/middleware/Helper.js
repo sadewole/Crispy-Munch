@@ -26,7 +26,6 @@ class Helper {
   static async checkMenu(id) {
     const text = `SELECT * from menu WHERE id = $1`;
     const { rows } = await db.query(text, [id]);
-
     return rows[0];
   }
 
