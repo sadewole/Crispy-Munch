@@ -56,21 +56,32 @@ class allCart {
 
     for (let i = 0; i < data.data.length; i++) {
       const info = data.data[i];
-      Total += info.food.price * info.quantity;
-      output += `
-      <tr class="cart-item">
-      <td><span class="orderImg">
-          <img src="${info.food.image}" alt="${info.food.name}">
-      </span>
-      ${info.food.name}</td>
-      <td><input type="number" class="quantity" data-id="${info.id}" name="quantity" value="${
-        info.quantity
-      }"></td>
-      <td><i class="fas fa-trash" data-id="${info.id}"></i></td>
-      <td class="price">₦${info.food.price}</td>
-      <td class="subTotal">₦${info.food.price * info.quantity}</td>
-    </tr>
-      `;
+      if (info.payment === 'pending') {
+        document.querySelector('#noCart').style.display = 'none';
+        myCart.style.display = 'block';
+
+        Total += info.food.price * info.quantity;
+        output += `
+				<tr class="cart-item">
+				<td><span class="orderImg">
+						<img src="${info.food.image}" alt="${info.food.name}">
+				</span>
+				${info.food.name}</td>
+				<td><input type="number" class="quantity" data-id="${info.id}" name="quantity" value="${
+          info.quantity
+        }"></td>
+				<td><i class="fas fa-trash" data-id="${info.id}"></i></td>
+				<td class="price">₦${info.food.price}</td>
+				<td class="subTotal">₦${info.food.price * info.quantity}</td>
+			</tr>
+				`;
+      }
+      if (info.payment === 'paid') {
+        myCart.style.display = 'none';
+        document.querySelector(
+          '#noCart'
+        ).innerHTML = `<h1>Cart is empty</h1><p>Browse our catalog and discover the best deals!</p>`;
+      }
     }
     myCart.innerHTML = `
     
@@ -89,10 +100,7 @@ class allCart {
       </tbody>
     </table>
     <h1 id="total">₦${Total}</h1>
-    <button class="btn btn-tertiary" id="proceed">Proceed to checkout</button>
-    
-   
-    `;
+    <button class="btn btn-tertiary" id="proceed">Proceed to checkout</button>`;
   }
 }
 
@@ -168,11 +176,9 @@ const loadMyCart = () => {
   })
     .then(res => res.json())
     .then(data => {
-      if (data.status === 200 && data.data >= 1) {
+      if (data.status === 200 || data.data >= 1) {
         allCart.viewMyCart(data);
       } else {
-        console.log(data.message);
-
         document.querySelector('#noCart').innerHTML = `<h1>${
           data.message
         }</h1><p>Browse our catalog and discover the best deals!</p>`;

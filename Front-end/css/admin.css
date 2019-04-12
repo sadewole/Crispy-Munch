@@ -20,7 +20,54 @@
 #orderNap {
 	display: none;
 }
+.dialogbox {
+	display: block;
+	position: fixed; /* Stay in place */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	transition: all 0.2s;
+	background: rgba(0, 0, 0, 0.8);
+	z-index: 3;
+}
+.userIdInfo {
+	width: 40%;
+	margin: 200px auto;
+	border: 5px red solid;
+	border-radius: 5px;
+	padding: 15px;
+	font-weight: bold;
+	background: #fff;
+	color: #333;
+	overflow: hidden;
+	transition: 1s all ease-out;
+	animation-name: userPop;
+	animation-duration: 0.3s;
+}
+@keyframes userPop {
+	0% {
+		transform: scale(0);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+@media (max-width: 578px) {
+	.userIdInfo {
+		width: 70%;
+		font-size: 0.8rem;
+	}
+}
 
+.closeFl {
+	float: right;
+	background: yellow;
+	border: 2px solid black;
+	padding: 3px;
+	font-size: 1rem;
+	font-family: var(--main-font-family);
+}
 body {
 	color: #fff;
 	font-family: var(--main-font-family);

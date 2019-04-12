@@ -14,6 +14,7 @@ const userInfo = document.querySelector('.userInfo');
 const closeModal = document.querySelector('#cancel');
 const closeModal2 = document.querySelector('#cancel2');
 const logHistory = document.querySelector('#history');
+const dialogbox = document.querySelector('.dialogbox');
 
 const addFoodName = document.querySelector('#addFoodName');
 const addFoodPrice = document.querySelector('#addFoodPrice');
@@ -81,7 +82,6 @@ const postNewFood = () => {
 class GenericDisplay {
 	static displayFoodList(datas) {
 		let output = '';
-		console.log(datas);
 		for (let i = 0; i < datas.data.length; i++) {
 			const info = datas.data[i];
 
@@ -314,6 +314,7 @@ const deleteFood = () => {
 	fetch(`${url}menu/${id}`, {
 		method: 'DELETE',
 		headers: {
+			Authorization: `${token}`,
 			Accept: 'application/json, text/plain, */*',
 			'Content-Type': 'application/json'
 		}
@@ -346,11 +347,12 @@ const loadAllFood = () => {
 	})
 		.then((res) => res.json())
 		.then((datas) => {
-			if (datas.status === 200 && datas.data >= 1) {
+			if (datas.status === 200 || datas.data >= 1) {
 				GenericDisplay.displayFoodList(datas);
-			} else {
-				document.querySelector('#noMenu').innerHTML = datas.message;
+				return;
 			}
+
+			document.querySelector('#noMenu').innerHTML = datas.message;
 		})
 		.catch((err) => console.error(err));
 };
@@ -383,7 +385,7 @@ const totalPayment = () => {
 		.then((res) => res.json())
 		.then((data) => {
 			if (data.status === 200) {
-				totalSale.innerHTML = `₦${data.total}`;
+				totalSale.innerHTML = `₦${data.total}.00`;
 			} else {
 				totalSale.innerHTML = data.message;
 			}

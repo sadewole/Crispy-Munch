@@ -51,6 +51,8 @@ class Tables {
       email text,
       address text,
       phone numeric,
+      status text,
+      payment text,
       created_date TIMESTAMP,
       FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
       FOREIGN KEY (menu_id) REFERENCES menu (id) ON DELETE CASCADE
