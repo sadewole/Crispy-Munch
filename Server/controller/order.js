@@ -137,7 +137,7 @@ class OrderTable {
   static updateOrder(req, res) {
     const params = [req.body.quantity, req.params.id];
 
-    const text = `UPDATE orders SET quantity=$1 WHERE id=$2`;
+    const text = `UPDATE orders SET quantity=$1, status=$2 WHERE id=$3`;
 
     db.query(text, params)
       .then(result => {
@@ -155,10 +155,38 @@ class OrderTable {
       });
   }
 
+  static patchUpdateOrder(req, res) {
+    let { status } = req.body;
+    if (status === null || status === undefined) {
+      status = 'new';
+    }
+    const params = [status, req.params.id];
+
+    const text = `UPDATE orders SET status=$1 WHERE id=$2`;
+
+    db.query(text, params)
+      .then(result => {
+        res.status(200).json({
+          TYPE: 'PATCH',
+          status: 200,
+          message: 'Order status updated successfully',
+          data: result.rows[0]
+        });
+      })
+      .catch(err => {
+        res.status(400).json({
+          message: err
+        });
+      });
+  }
+
   static updateUserOrders(req, res) {
     const userId = req.user.rows[0].id;
-    const { address, email, phone, status } = req.body;
-
+    const { address, email, phone } = req.body;
+    let { status } = req.body;
+    if (status === null || status === undefined) {
+      status = 'new';
+    }
     const params = [new Date(), address, email, phone, 'paid', status, userId];
     const text = `UPDATE orders SET created_date= $1,address=$2,email=$3,phone=$4, payment=$5, status=$6 WHERE user_id=$7`;
 

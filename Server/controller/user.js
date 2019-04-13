@@ -40,6 +40,7 @@ class UserTable {
         }
         return res.status(200).json({
           TYPE: 'GET',
+          status: 200,
           message: 'Request successful',
           data: result.rows[0]
         });
