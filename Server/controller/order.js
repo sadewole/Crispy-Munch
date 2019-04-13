@@ -137,7 +137,7 @@ class OrderTable {
   static updateOrder(req, res) {
     const params = [req.body.quantity, req.params.id];
 
-    const text = `UPDATE orders SET quantity=$1, status=$2 WHERE id=$3`;
+    const text = `UPDATE orders SET quantity=$1 WHERE id=$2`;
 
     db.query(text, params)
       .then(result => {
