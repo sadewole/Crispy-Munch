@@ -7,12 +7,14 @@ const orderNap = document.querySelector('#orderNap');
 const addMenu = document.querySelector('.add-menu');
 const modalbg = document.querySelector('.modalbg');
 const modalbg2 = document.querySelector('.modalbg2');
+const totalSale = document.querySelector('#totalSale');
 const searchUser = document.querySelector('#searchUser');
-const findUser = document.querySelectorAll('#findUser tr');
 const foodMenu = document.querySelector('.foodMenu');
 const userInfo = document.querySelector('.userInfo');
 const closeModal = document.querySelector('#cancel');
 const closeModal2 = document.querySelector('#cancel2');
+const logHistory = document.querySelector('#history');
+const dialogbox = document.querySelector('.dialogbox');
 
 const addFoodName = document.querySelector('#addFoodName');
 const addFoodPrice = document.querySelector('#addFoodPrice');
@@ -25,7 +27,6 @@ const url = 'http://localhost:3000/api/v1/';
 
 let token = null;
 let id = null;
-
 const clearError1 = () => {
   errorPost.innerText = '';
 };
@@ -47,6 +48,11 @@ window.addEventListener('load', () => {
         if (data.status !== 200 && data.data.role !== 'Admin') {
           window.location.replace('./login.html');
         }
+        if (data.status === 200 && data.data.role === 'User') {
+          window.location.replace('./menu.html');
+        }
+
+        document.querySelector('#username').innerHTML = data.data.username;
       });
   } else {
     window.location.replace('./login.html');
@@ -58,6 +64,9 @@ const postNewFood = () => {
 
   fetch(`${url}menu`, {
     method: 'POST',
+    headers: {
+      Authorization: `${token}`
+    },
     body: formData
   })
     .then(res => res.json())
@@ -73,7 +82,6 @@ const postNewFood = () => {
 class GenericDisplay {
   static displayFoodList(datas) {
     let output = '';
-
     for (let i = 0; i < datas.data.length; i++) {
       const info = datas.data[i];
 
@@ -139,7 +147,7 @@ class GenericDisplay {
 	  <td>${info.username}</td>
 	  <td>${info.email}</td>
 	  <td>${info.role}</td>
-	  <td class="promote"><i class="fas fa-upload"></i></td>
+	  <td class="promote"><i class="fas fa-upload" data-id="${info.id}"></i></td>
 	  <td class="delete"><i class="far fa-trash-alt" data-id="${info.id}"></i></td>
 	</tr>`;
     }
@@ -161,10 +169,64 @@ class GenericDisplay {
     </table>
     `;
   }
+
+  static history(datas) {
+    let output = '';
+
+    for (let i = 0; i < datas.data.length; i++) {
+      const info = datas.data[i];
+
+      output += `
+      <tr>
+              <td data-label="Ordered date">${info.orderedDate}</td>
+              <td data-label="Ordered Id">${info.id}</td>
+              <td data-label="Food">${info.food.name}</td>
+              <td data-label="Quantity">${info.quantity}</td>
+              <td data-label="User Id"><a href="#" id="userInfo" data-user='${info.userId}'>${
+        info.userId
+      }</a></td>
+              <td data-label="Address">${info.address}</td>
+              <td data-label="Phone number">+234${info.phone}</td>
+              <td data-label="Price">₦${info.amount}</td>
+							<td data-label="Status">
+								<select name="" id="select-item" data-id='${info.id}'>
+									<option default >${info.status}</option>
+									<option value="processing">processing</option>
+									<option value="completed">completed</option>
+						 		</select>
+              </td>
+              <td data-label="Delete"><button data-id='${info.id}'>cancel</button></td>
+      </tr>
+      `;
+    }
+
+    logHistory.innerHTML = `
+    <table class="table table-responsive">
+          <thead>
+            <tr>
+              <th>Ordered date</th>
+              <th>Order Id</th>
+              <th>Food</th>
+              <th>Quantity</th>
+              <th>User Id</th>
+              <th>Address</th>
+              <th>Phone number</th>
+              <th>Price</th>
+              <th>Status</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            ${output}
+          </tbody>
+    </table>
+    `;
+  }
 }
 
-const allUsers = () => {
-  fetch(`${url}user`, {
+const checkUserInfo = () => {
+  fetch(`${url}user/${id}`, {
     headers: {
       Authorization: `${token}`
     }
@@ -172,11 +234,30 @@ const allUsers = () => {
     .then(res => res.json())
     .then(data => {
       if (data.status === 200) {
-        GenericDisplay.displayAllUsers(data);
+        console.log(data.data);
+        alert('check the console');
       }
     })
     .catch(err => console.error(err));
 };
+
+const upgradeUser = () => {
+  fetch(`${url}user/${id}`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `${token}`
+    }
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === 200) {
+        alert(data.message);
+        window.location.reload('./admin.html');
+      }
+    })
+    .catch(err => console.error(err));
+};
+
 const deleteUser = () => {
   fetch(`${url}user/${id}`, {
     method: 'DELETE',
@@ -255,6 +336,7 @@ const deleteFood = () => {
   fetch(`${url}menu/${id}`, {
     method: 'DELETE',
     headers: {
+      Authorization: `${token}`,
       Accept: 'application/json, text/plain, */*',
       'Content-Type': 'application/json'
     }
@@ -278,6 +360,47 @@ const editFood = () => {
     .catch(err => console.error(err));
 };
 
+// update order status
+const updateStatus = status => {
+  fetch(`${url}order/${id}`, {
+    method: 'PATCH',
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+      Authorization: `${token}`
+    },
+    body: JSON.stringify({
+      status
+    })
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === 200) {
+        alert(data.message);
+      }
+    })
+    .catch(err => console.error(err));
+};
+
+// delete order request
+const deleteOrder = () => {
+  fetch(`${url}order/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `${token}`,
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === 200) {
+        alert(data.message);
+        window.location.replace('./admin.html');
+      }
+    });
+};
+
 // Load all food once logged in
 const loadAllFood = () => {
   fetch(`${url}menu`, {
@@ -289,12 +412,66 @@ const loadAllFood = () => {
     .then(datas => {
       if (datas.status === 200 || datas.data >= 1) {
         GenericDisplay.displayFoodList(datas);
+        return;
+      }
+
+      document.querySelector('#noMenu').innerHTML = datas.message;
+    })
+    .catch(err => console.error(err));
+};
+
+// load all order history once logged in
+const orderHistory = () => {
+  fetch(`${url}order`, {
+    headers: {
+      Authorization: `${token}`
+    }
+  })
+    .then(res => res.json())
+    .then(datas => {
+      if (datas.status === 200 || datas.data >= 1) {
+        GenericDisplay.history(datas);
       } else {
-        document.querySelector('#noMenu').innerHTML = datas.message;
+        document.querySelector('#history').innerHTML = datas.message;
       }
     })
     .catch(err => console.error(err));
 };
+
+// Load total sales
+const totalPayment = () => {
+  fetch(`${url}total`, {
+    headers: {
+      Authorization: `${token}`
+    }
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === 200) {
+        totalSale.innerHTML = `₦${data.total}.00`;
+      } else {
+        totalSale.innerHTML = data.message;
+      }
+    })
+    .catch(err => console.error(err));
+};
+
+// load all user once logged in
+const allUsers = () => {
+  fetch(`${url}user`, {
+    headers: {
+      Authorization: `${token}`
+    }
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === 200) {
+        GenericDisplay.displayAllUsers(data);
+      }
+    })
+    .catch(err => console.error(err));
+};
+
 const signOut = () => {
   fetch(`${url}auth/logout`, {
     method: 'GET',
@@ -335,6 +512,25 @@ const closeFoodModal = e => {
   }
 };
 
+const controlSearch = () => {
+  const val = searchUser.value.toUpperCase();
+  const filter = findUser.querySelectorAll('tr');
+
+  filter.forEach(i => {
+    if (i.children[0].innerText.toUpperCase().indexOf(val) !== -1) {
+      i.style.display = '';
+    } else {
+      i.style.display = 'none';
+    }
+  });
+};
+
+const changeStatus = e => {
+  const status = String(e.target.value);
+
+  updateStatus(status);
+};
+
 // event delegation
 const toggleDone = e => {
   if (e.target.matches('i.fa-trash-alt')) {
@@ -360,12 +556,34 @@ const toggleUser = e => {
     id = e.target.getAttribute('data-id');
     deleteUser();
   }
+  if (e.target.matches('i.fa-upload')) {
+    id = e.target.getAttribute('data-id');
+    upgradeUser();
+  }
 };
+const toggleOrder = e => {
+  if (e.target.matches('td button')) {
+    id = e.target.getAttribute('data-id');
+    deleteOrder();
+  }
 
+  if (e.target.matches('td select')) {
+    const select = e.target;
+    id = select.getAttribute('data-id');
+    select.addEventListener('change', changeStatus);
+  }
+
+  if (e.target.matches('td a#userInfo')) {
+    id = e.target.getAttribute('data-user');
+    checkUserInfo();
+  }
+};
 // Generic Event listener
 window.addEventListener('load', () => {
   loadAllFood();
   allUsers();
+  orderHistory();
+  totalPayment();
 });
 
 save.addEventListener('click', addNewFood);
@@ -373,22 +591,12 @@ foodMenu.addEventListener('click', toggleDone);
 editFoodForm.addEventListener('click', toggleEdit);
 logout.addEventListener('click', signOut);
 userInfo.addEventListener('click', toggleUser);
+logHistory.addEventListener('click', toggleOrder);
 
-const controlSearch = e => {
-  const val = e.target.value.toUpperCase();
-
-  findUser.forEach(i => {
-    if (i.children[0].innerText.toUpperCase().indexOf(val) !== -1) {
-      i.style.display = '';
-    } else {
-      i.style.display = 'none';
-    }
-  });
-};
-
-searchUser.addEventListener('input', controlSearch);
 addMenu.addEventListener('click', openFoodModal);
 window.addEventListener('click', closeFoodModal);
+
+searchUser.addEventListener('input', controlSearch);
 
 menu.addEventListener('click', () => {
   menuNap.style.display = 'block';

@@ -1,10 +1,12 @@
 @import "navadmin.css";
 @import "font-awesome/css/all.css";
 @import url('https://fonts.googleapis.com/css?family=Pacifico|Roboto+Condensed');
+
 * {
 	margin: 0;
 	padding: 0;
 }
+
 :root {
 	--main-dark-color: #343a40;
 	--main-font-family: 'Roboto Condensed', sans-serif;
@@ -14,21 +16,92 @@
 #menuNap {
 	display: block;
 }
+
 #customerNap {
 	display: none;
 }
+
 #orderNap {
 	display: none;
+}
+
+/* #status {}
+
+.btn {
+	padding: 5px;
+	border-radius: 5px;
+	border: transparent;
+	outline: transparent;
+	cursor: pointer;
+	margin: 5px
+} */
+
+.dialogbox {
+	display: block;
+	position: fixed;
+	/* Stay in place */
+	left: 0;
+	top: 0;
+	width: 100%;
+	/* Full width */
+	height: 100%;
+	/* Full height */
+	transition: all 0.2s;
+	background: rgba(0, 0, 0, 0.8);
+	z-index: 3;
+}
+
+.userIdInfo {
+	width: 40%;
+	margin: 200px auto;
+	border: 5px red solid;
+	border-radius: 5px;
+	padding: 15px;
+	font-weight: bold;
+	background: #fff;
+	color: #333;
+	overflow: hidden;
+	transition: 1s all ease-out;
+	animation-name: userPop;
+	animation-duration: 0.3s;
+}
+
+@keyframes userPop {
+	0% {
+		transform: scale(0);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+@media (max-width: 578px) {
+	.userIdInfo {
+		width: 70%;
+		font-size: 0.8rem;
+	}
+}
+
+.closeFl {
+	float: right;
+	background: yellow;
+	border: 2px solid black;
+	padding: 3px;
+	font-size: 1rem;
+	font-family: var(--main-font-family);
 }
 
 body {
 	color: #fff;
 	font-family: var(--main-font-family);
 }
+
 #errorPost,
 #editErr {
 	color: red;
 }
+
 .container {
 	position: absolute;
 	top: 50px;
@@ -37,6 +110,7 @@ body {
 	width: 80%;
 	color: var(--main-dark-color);
 }
+
 .add-menu {
 	font-size: 1.2rem;
 	padding: 5px;
@@ -48,6 +122,7 @@ body {
 	cursor: pointer;
 	transition: all .5s linear;
 }
+
 .add-menu:hover {
 	background: var(--main-dark-color);
 	color: #fff;
@@ -60,6 +135,7 @@ body {
 	transition: all .5s linear;
 	text-align: center;
 }
+
 .table .edit:hover,
 .table .promote:hover,
 .table .delete:hover {
@@ -87,12 +163,15 @@ body {
 	width: 10%;
 	text-align: center;
 }
+
 .foodMenu .table td:nth-child(2) {
 	width: 50%;
 }
+
 .foodMenu .table td:nth-child(3) {
 	width: 20%;
 }
+
 .foodMenu .table td {
 	padding: 0.5rem;
 	vertical-align: top;
@@ -105,6 +184,7 @@ body {
 	vertical-align: bottom;
 	border-bottom: 2px solid #dee2e6;
 }
+
 .foodMenu .table tbody tr {
 	transition: all .5s linear;
 }
@@ -121,32 +201,41 @@ body {
 	transition: all 0.3s;
 	animation: popUp 0.3s linear forwards;
 }
+
 @keyframes popUp {
 	from {
 		margin-top: -10000px;
 	}
+
 	to {
 		margin-top: 0px;
 	}
 }
+
 .modalbg,
 .modalbg2 {
 	display: none;
-	position: fixed; /* Stay in place */
+	position: fixed;
+	/* Stay in place */
 	left: 0;
 	top: 0;
-	width: 100%; /* Full width */
-	height: 100%; /* Full height */
+	width: 100%;
+	/* Full width */
+	height: 100%;
+	/* Full height */
 	transition: all 0.2s;
 	background: rgba(0, 0, 0, 0.3);
 	z-index: 3;
 }
+
 form {
 	padding: 1.2rem 0;
 }
+
 .form-group {
 	display: block;
 }
+
 .form-control {
 	display: block;
 	width: 97%;
@@ -157,6 +246,7 @@ form {
 	border: 1px solid var(--main-dark-color);
 	outline: transparent;
 }
+
 .addModal button,
 .editModal button {
 	float: right;
@@ -168,23 +258,28 @@ form {
 	margin-right: 7px;
 	cursor: pointer;
 }
+
 .addModal button:hover,
 .editModal button:hover {
 	opacity: 0.6;
 }
+
 #save {
 	color: #fff;
 	background: #343a40;
 }
+
 #cancel,
 #cancel2 {
 	color: #fff;
 	background: #dc3545;
 }
+
 .addModal button:after,
 .editModal button:after {
 	clear: both;
 }
+
 @media screen and (max-width: 768px) {
 	.container {
 		position: relative;
@@ -201,7 +296,9 @@ form {
 		-ms-overflow-style: -ms-autohiding-scrollbar;
 	}
 }
+
 @media (max-width: 578px) {
+
 	.addModal,
 	.editModal {
 		width: 70%;
@@ -225,6 +322,7 @@ form {
 	border: 1px solid var(--main-dark-color);
 	transition: all 0.5s;
 }
+
 .form-inline input:focus {
 	border-color: #333;
 }
@@ -235,12 +333,15 @@ form {
 	width: 10%;
 	text-align: center;
 }
+
 .userInfo .table td:nth-child(2) {
 	width: 50%;
 }
+
 .userInfo .table td:nth-child(1) {
 	width: 20%;
 }
+
 .userInfo .table td {
 	padding: 0.5rem;
 	vertical-align: top;
@@ -253,9 +354,11 @@ form {
 	vertical-align: bottom;
 	border-bottom: 2px solid #dee2e6;
 }
+
 .userInfo .table tbody tr {
 	transition: all .5s linear;
 }
+
 .userInfo .table tbody tr:hover {
 	color: #fff;
 	background-color: #333;
@@ -274,26 +377,33 @@ tr:nth-of-type(odd) {
 .table th {
 	padding: .7rem;
 }
+
 #orderNap .table td {
 	padding: 0.5rem;
 	vertical-align: top;
 	border-top: 1px solid #dee2e6;
 	text-align: center;
 }
+
 #orderNap .table td:nth-child(1),
+#orderNap .table td:nth-child(3),
 #orderNap .table td:nth-child(4),
-#orderNap.table td:nth-child(8),
+#orderNap .table td:nth-child(8),
 #orderNap .table td:nth-child(9),
 #orderNap .table td:nth-child(10) {
 	width: 5%;
 }
 
-#orderNap.table td:nth-child(2),
-#orderNap .table td:nth-child(3),
+#orderNap .table td:nth-child(2),
 #orderNap .table td:nth-child(5),
 #orderNap .table td:nth-child(7) {
 	width: 10%;
 }
+
+#orderNap .table td:nth-child(6) {
+	width: 30%;
+}
+
 #orderNap .table td:nth-child(10) button {
 	cursor: pointer;
 	padding: 9px;
@@ -302,6 +412,7 @@ tr:nth-of-type(odd) {
 	background: brown;
 	color: #fff;
 }
+
 #orderNap .table thead tr {
 	color: #fff;
 	background-color: #333;
@@ -309,19 +420,32 @@ tr:nth-of-type(odd) {
 	border-bottom: 2px solid #dee2e6;
 	text-align: center;
 }
+
 #orderNap .table tbody tr {
 	transition: all .5s linear;
 }
+
 #orderNap .table tbody tr:hover {
 	color: #fff;
 	background: #333;
 	border-color: #32383e;
 }
 
-@media screen and (max-width: 768px), (min-device-width: 768px) and (max-device-width: 1024px) {
+#orderNap .table tbody a {
+	color: inherit;
+}
+
+#orderNap .table select {
+	border-radius: 5px;
+	outline: transparent;
+}
+
+@media screen and (max-width: 768px),
+(min-device-width: 768px) and (max-device-width: 1024px) {
 	#orderNap .table {
 		border: 0;
 	}
+
 	#orderNap .table thead {
 		border: none;
 		clip: rect(0 0 0 0);
@@ -332,6 +456,7 @@ tr:nth-of-type(odd) {
 		position: absolute;
 		width: 1px;
 	}
+
 	#orderNap .table td {
 		border-bottom: 1px solid #ddd;
 		display: block;
@@ -345,6 +470,7 @@ tr:nth-of-type(odd) {
 		font-weight: bold;
 		text-transform: uppercase;
 	}
+
 	#orderNap .table td:nth-child(1),
 	#orderNap .table td:nth-child(4),
 	#orderNap .table td:nth-child(8),
@@ -353,17 +479,21 @@ tr:nth-of-type(odd) {
 	#orderNap .table td:nth-child(2),
 	#orderNap .table td:nth-child(3),
 	#orderNap .table td:nth-child(5),
+	#orderNap .table td:nth-child(6),
 	#orderNap .table td:nth-child(7) {
 		width: inherit;
 	}
+
 	#orderNap .table td:last-child {
 		border-bottom: 0;
 	}
+
 	#orderNap .table tr {
 		border-bottom: 3px solid #ddd;
 		display: block;
 		margin-bottom: .625em;
 	}
+
 	#orderNap .table td:nth-child(10) button {
 		padding: 5px;
 		font-size: .8rem;

@@ -15,12 +15,19 @@
     <nav class="nav">
       <div class="nav-flex-md">
         <div class="nav-flex">
-          <a href="./index.html" class="crispy1">
-            <img src="./img/logo.png" alt="logo" width="30px" height="30px">
-          </a>
-          <button class="hide-on-bg" id="opennav">
-            <a href="#" id="openup">|||</a>
-          </button>
+          <div class="nav-flex">
+            <a href="./index.html" class="crispy1">
+              <img src="./img/logo.png" alt="logo" width="30px" height="30px">
+            </a>
+            <button class="hide-on-bg" id="opennav">
+              <a href="#" id="openup">|||</a>
+            </button>
+          </div>
+          <div>
+            <span class="nav-flex"><i class="fas fa-user"></i>
+              <p id="username"></p>
+            </span>
+          </div>
         </div>
 
         <div class="nav-pills">
@@ -76,10 +83,22 @@
     </div>
   </div>
 
+  <!-- dialog box -->
+  <!-- <div class="dialogbox">
+    <div class="userIdInfo">
+      <div class="details">
+        <p>Id: 12237373737</p>
+        <p>Username: Samador</p>
+        <p>Email: samueladewole15@gmail.com</p>
+        <p>Role: Admin</p>
+      </div>
+      <button class="closeFl">close</button>
+    </div>
+  </div> -->
+
+
   <!-- container -->
   <div class="container">
-
-
     <div id="menuNap">
       <button class="add-menu">Add Menu</button>
       <!-- food menu -->
@@ -100,75 +119,19 @@
           </form>
         </div>
         <!-- list of users -->
-        <div class="userInfo" >
-    
+        <div class="userInfo">
+
         </div>
       </div>
     </div>
     <div id="orderNap">
       <div class="profit">
         <h1><i class="fas fa-hand-holding-usd"></i>Total Payment</h1>
-        $789,000.00
+        <div id="totalSale"></div>
       </div>
-      <!-- food menu -->
-      <div class="contain">
-        <table class="table table-responsive">
-          <thead>
-            <tr>
-              <th>Ordered date</th>
-              <th>Ordered Id</th>
-              <th>Food</th>
-              <th>Quantity</th>
-              <th>User Id</th>
-              <th>Address</th>
-              <th>Phone number</th>
-              <th>Price</th>
-              <th>Status</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
+      <!-- order history -->
+      <div class="contain" id="history">
 
-          <tbody>
-            <tr>
-              <td data-label="Ordered date">27-03-04</td>
-              <td data-label="Ordered Id">1</td>
-              <td data-label="Food">Beef and egg</td>
-              <td data-label="Quantity">3</td>
-              <td data-label="User Id">1</td>
-              <td data-label="Address">8/10 ogidan crescent, ifesowapo, akute, ogun state</td>
-              <td data-label="Phone number">9097685672</td>
-              <td data-label="Price">$800</td>
-              <td data-label="Status">Processing</td>
-              <td data-label="Delete"><button>cancel</button></td>
-            </tr>
-            <tr>
-              <td data-label="Ordered date">27-03-04</td>
-              <td data-label="Ordered Id"> 1</td>
-              <td data-label="Food">Beef and egg</td>
-              <td data-label="Quantity">3</td>
-              <td data-label="User Id">1</td>
-              <td data-label="Address">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore consectetur
-                voluptate quae totam consequatur animi maiores sit praesentium possimus? Recusandae.</td>
-              <td data-label="Phone number">9097685672</td>
-              <td data-label="Price">$800</td>
-              <td data-label="Status">Complete</td>
-              <td data-label="Delete"><button>cancel</button></td>
-            </tr>
-            <tr>
-              <td data-label="Ordered date"> 27-03-04</td>
-              <td data-label="Ordered Id">1</td>
-              <td data-label="Food">Beef and egg</td>
-              <td data-label="Quantity">3</td>
-              <td data-label="User Id">1</td>
-              <td data-label="Address">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia quibusdam repellat
-                laudantium suscipit quam delectus quo rerum?</td>
-              <td data-label="Phone number">9097685672</td>
-              <td data-label="Price">$800</td>
-              <td data-label="Status">Processing</td>
-              <td data-label="Delete"><button>cancel</button></td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </div>
   </div>

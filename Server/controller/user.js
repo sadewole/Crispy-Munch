@@ -40,8 +40,25 @@ class UserTable {
         }
         return res.status(200).json({
           TYPE: 'GET',
+          status: 200,
           message: 'Request successful',
           data: result.rows[0]
+        });
+      })
+      .catch(err => {
+        res.status(400).json(err);
+      });
+  }
+
+  static upgradeUser(req, res) {
+    const text = `UPDATE users set role=$1 where id=$2`;
+
+    db.query(text, ['Admin', req.params.id])
+      .then(result => {
+        res.status(200).json({
+          TYPE: 'PUT',
+          status: 200,
+          message: 'User now has the role of an admin'
         });
       })
       .catch(err => {

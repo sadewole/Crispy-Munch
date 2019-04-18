@@ -3,43 +3,55 @@ import db from '../model/index';
 import Helper from '../middleware/Helper';
 
 class OrderTable {
-  static getAllOrder(req, res) {
-    const text = `SELECT * from orders`;
+  static async getAllOrder(req, res) {
+    try {
+      const text = `SELECT * from orders`;
+      const { rows } = await db.query(text);
 
-    db.query(text)
-      .then(result => {
-        if (result.rows.length >= 1) {
-          res.status(200).json({
-            TYPE: 'GET',
-            count: result.rows.length,
-            message: 'List of ordered in food',
-            data: result.rows.map(order => {
-              return {
-                id: order.id,
-                userId: order.user_id,
-                foodId: order.menu_id,
-                quantity: order.quantity,
-                request: `http://localhost:3000/api/v1/order/${order.id}`
-              };
-            })
-          });
-        } else {
-          res.status(200).json({
-            message: 'Cart is empty'
-          });
-        }
-      })
-      .catch(err => {
-        res.status(400).json({
-          message: err
+      if (!rows[0]) {
+        return res.status(200).json({
+          message: 'Order history is empty'
         });
+      }
+
+      const data = [];
+      for (let i = 0; i < rows.length; i++) {
+        const order = rows[i];
+        const food = await Helper.checkMenu(order.menu_id);
+        data.push({
+          orderedDate: String(order.created_date)
+            .slice(4, 15)
+            .replace(/\s/g, '-'),
+          id: order.id,
+          userId: order.user_id,
+          food,
+          quantity: order.quantity,
+          amount: order.quantity * food.price,
+          status: order.status,
+          address: order.address,
+          phone: order.phone,
+          requestUserHistory: `http://localhost:3000/api/v1/user/${order.user_id}/order`
+        });
+      }
+
+      return res.status(200).json({
+        TYPE: 'GET',
+        count: rows.length,
+        status: 200,
+        message: 'List of orders',
+        data
       });
+    } catch (err) {
+      return res.status(400).json({
+        message: err
+      });
+    }
   }
 
   static addNewOrder(req, res) {
     const userId = req.user.rows[0].id;
-    const params = [uuidv4(), userId, req.body.menuId, req.body.quantity];
-    const text = `INSERT INTO orders(id, user_id, menu_id, quantity) VALUES($1, $2, $3, $4) returning *`;
+    const params = [uuidv4(), userId, req.body.menuId, req.body.quantity, 'pending', 'new'];
+    const text = `INSERT INTO orders(id, user_id, menu_id, quantity, payment, status) VALUES($1, $2, $3, $4, $5, $6) returning *`;
 
     db.query(text, params)
       .then(result => {
@@ -105,7 +117,8 @@ class OrderTable {
         data.push({
           id: rows[i].id,
           quantity: rows[i].quantity,
-          food
+          food,
+          payment: rows[i].payment
         });
       }
       return res.status(200).json({
@@ -142,11 +155,40 @@ class OrderTable {
       });
   }
 
-  static updateUserOrders(req, res) {
-    const { address, email, phoneNo } = req.body;
+  static patchUpdateOrder(req, res) {
+    let { status } = req.body;
+    if (status === null || status === undefined) {
+      status = 'new';
+    }
+    const params = [status, req.params.id];
 
-    const params = [address, email, phoneNo, req.params.id];
-    const text = `UPDATE orders SET address=$1,email=$2,phoneNo=$3 WHERE id=$4`;
+    const text = `UPDATE orders SET status=$1 WHERE id=$2`;
+
+    db.query(text, params)
+      .then(result => {
+        res.status(200).json({
+          TYPE: 'PATCH',
+          status: 200,
+          message: 'Order status updated successfully',
+          data: result.rows[0]
+        });
+      })
+      .catch(err => {
+        res.status(400).json({
+          message: err
+        });
+      });
+  }
+
+  static updateUserOrders(req, res) {
+    const userId = req.user.rows[0].id;
+    const { address, email, phone } = req.body;
+    let { status } = req.body;
+    if (status === null || status === undefined) {
+      status = 'new';
+    }
+    const params = [new Date(), address, email, phone, 'paid', status, userId];
+    const text = `UPDATE orders SET created_date= $1,address=$2,email=$3,phone=$4, payment=$5, status=$6 WHERE user_id=$7`;
 
     db.query(text, params)
       .then(result => {
@@ -180,6 +222,36 @@ class OrderTable {
           message: err
         });
       });
+  }
+
+  static async total(req, res) {
+    try {
+      const text = `SELECT * from orders`;
+      const { rows } = await db.query(text);
+
+      if (!rows[0]) {
+        return res.status(404).json({
+          message: 'No sale has been made'
+        });
+      }
+
+      let total = 0;
+      for (let i = 0; i < rows.length; i++) {
+        const order = rows[i];
+        const food = await Helper.checkMenu(order.menu_id);
+        total += order.quantity * food.price;
+      }
+      return res.status(200).json({
+        TYPE: 'GET',
+        status: 200,
+        total,
+        message: 'Total sales update'
+      });
+    } catch (err) {
+      return res.status(400).json({
+        message: err
+      });
+    }
   }
 }
 
