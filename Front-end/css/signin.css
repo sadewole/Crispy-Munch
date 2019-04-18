@@ -27,6 +27,11 @@ img {
 .img-grid {
 	border-radius: 50%;
 }
+
+#error {
+	color: red;
+}
+
 .container {
 	background: url('../img/landingPagebg.jpg');
 	background-position: center;
@@ -92,7 +97,7 @@ img {
 	border: none;
 }
 
-input[type="submit"] {
+button {
 	width: 100%;
 	padding: 10px;
 	border: 0;
@@ -103,7 +108,7 @@ input[type="submit"] {
 	transition: all 0.5s;
 	margin-bottom: 1rem;
 }
-input[type="submit"]:hover {
+button:hover {
 	color: red;
 	box-shadow: 0 1px #454a4f;
 }
@@ -120,7 +125,7 @@ input[type="submit"]:hover {
 .footer {
 	width: 100%;
 	position: absolute;
-	top: 75vh;
+	top: 83vh;
 }
 @media (max-width: 578px) {
 	.grid-row {

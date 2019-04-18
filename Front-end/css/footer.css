@@ -8,7 +8,9 @@
 	--main-font-family: 'Roboto Condensed', sans-serif;
 	--crispy-font: 'Pacifico', cursive;
 }
-
+.footer {
+	width: 100%;
+}
 .footer-grid {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);

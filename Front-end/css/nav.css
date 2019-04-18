@@ -18,6 +18,7 @@ body {
 	background: #f3f3f3;
 }
 .nav {
+	width: 100%;
 	margin: 0px;
 	background: var(--main-dark-color);
 	color: #fff;
@@ -98,6 +99,7 @@ body {
 	.nav-flex-md {
 		display: block;
 	}
+
 	nav button a#openup {
 		transform: rotate(-90deg);
 		-ms-transform: rotate(-90deg);
@@ -117,6 +119,7 @@ body {
 		text-align: center;
 	}
 	nav button {
+		width: inherit;
 		background: transparent;
 		border: none;
 		outline: none;

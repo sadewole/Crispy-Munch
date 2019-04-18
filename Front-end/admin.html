@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Admin Food Menu</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+  <!-- nav menu -->
+  <div class="">
+    <nav class="nav">
+      <div class="nav-flex-md">
+        <div class="nav-flex">
+          <div class="nav-flex">
+            <a href="./index.html" class="crispy1">
+              <img src="./img/logo.png" alt="logo" width="30px" height="30px">
+            </a>
+            <button class="hide-on-bg" id="opennav">
+              <a href="#" id="openup">|||</a>
+            </button>
+          </div>
+          <div>
+            <span class="nav-flex"><i class="fas fa-user"></i>
+              <p id="username"></p>
+            </span>
+          </div>
+        </div>
+
+        <div class="nav-pills">
+          <ul>
+            <li class="nav-item hide-on-bg">
+              <a href="./index.html" class="crispy2">
+                <img src="./img/logo.png" alt="logo" width="30px" height="30px">
+              </a>
+            </li>
+            <li class="nav-item" id="menu">
+              <span><i class="fas fa-file-contract db"></i></span>
+              <a href="#" class="nav-link">Food Menu</a>
+            </li>
+            <li class="nav-item" id="customer">
+              <span><i class="fas fa-users db"></i></span>
+              <a href="#" class="nav-link">Customer</a>
+            </li>
+            <li class="nav-item" id="order">
+              <span><i class="fas fa-history db"></i></span>
+              <a href="#" class="nav-link">Order history</a>
+            </li>
+            <li class="nav-item">
+              <span><i class="fas fa-sign-out-alt db"></i></span>
+              <a href="#" class="nav-link" id="logout">Sign Out</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="navModal"></div>
+    </nav>
+  </div>
+
+  <!-- add food modal -->
+  <div class="modalbg">
+    <div class="addModal">
+      <form method="POST" enctype="multipart/form-data" id="myForm">
+        <div class="form-group">
+          <label>Name:</label>
+          <input type="text" class="form-control" name="name" id="addFoodName">
+        </div>
+        <div class="form-group">
+          <label>Price:</label>
+          <input type="text" class="form-control" name="price" id="addFoodPrice">
+        </div>
+        <div class="form-group">
+          <label>Image:</label>
+          <input type="file" class="form-control" name="image" id="addFoodImage">
+        </div>
+        <p id="errorPost"></p>
+        <button id="save" type="submit" class="close">Save</button>
+        <button id="cancel" type="button">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- dialog box -->
+  <!-- <div class="dialogbox">
+    <div class="userIdInfo">
+      <div class="details">
+        <p>Id: 12237373737</p>
+        <p>Username: Samador</p>
+        <p>Email: samueladewole15@gmail.com</p>
+        <p>Role: Admin</p>
+      </div>
+      <button class="closeFl">close</button>
+    </div>
+  </div> -->
+
+
+  <!-- container -->
+  <div class="container">
+    <div id="menuNap">
+      <button class="add-menu">Add Menu</button>
+      <!-- food menu -->
+      <div class="foodMenu">
+        <h1 id="noMenu"></h1>
+
+      </div>
+    </div>
+    <div id="customerNap">
+      <h1>List of all users</h1>
+      <div class="contain">
+        <div>
+          <form class="form">
+            <div class="form-inline">
+              <label>Search:</label>
+              <input type="text" name="search" id="searchUser">
+            </div>
+          </form>
+        </div>
+        <!-- list of users -->
+        <div class="userInfo">
+
+        </div>
+      </div>
+    </div>
+    <div id="orderNap">
+      <div class="profit">
+        <h1><i class="fas fa-hand-holding-usd"></i>Total Payment</h1>
+        <div id="totalSale"></div>
+      </div>
+      <!-- order history -->
+      <div class="contain" id="history">
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+  <!-- edit food modal -->
+  <div class="modalbg2">
+    <div class="editModal" id="editFoodForm">
+
+    </div>
+  </div>
+  <script src="js/navadmin.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+
+</html>
