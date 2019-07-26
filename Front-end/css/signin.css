@@ -12,6 +12,7 @@
 	--main-font-family: 'Roboto Condensed', sans-serif;
 	--crispy-font: 'Pacifico', cursive;
 }
+
 body {
 	color: #fff;
 	font-family: var(--main-font-family);
@@ -21,9 +22,11 @@ body {
 section {
 	position: relative;
 }
+
 img {
 	max-width: 100%;
 }
+
 .img-grid {
 	border-radius: 50%;
 }
@@ -38,7 +41,7 @@ img {
 	background-repeat: no-repeat;
 	background-size: cover;
 	width: 100%;
-	height: 100vh;
+	height: calc(100vh - 50px);
 	filter: blur(12px);
 }
 
@@ -59,12 +62,15 @@ img {
 	padding: 1.2rem;
 	border-radius: 5px;
 }
+
 .login h3 {
 	margin-bottom: 1.2rem;
 }
+
 .form-group {
 	position: relative;
 }
+
 .form-group input {
 	width: 100%;
 	border: 0;
@@ -76,6 +82,7 @@ img {
 	color: #fff;
 	border-bottom: 1px solid #fff;
 }
+
 .form-group label {
 	position: absolute;
 	top: 0;
@@ -89,8 +96,8 @@ img {
 	border: none;
 }
 
-.form-group input:focus ~ label,
-.form-group input:valid ~ label {
+.form-group input:focus~label,
+.form-group input:valid~label {
 	font-size: 14px;
 	top: -20px;
 	color: red;
@@ -108,25 +115,28 @@ button {
 	transition: all 0.5s;
 	margin-bottom: 1rem;
 }
+
 button:hover {
 	color: red;
 	box-shadow: 0 1px #454a4f;
 }
+
 .login-text {
 	font-size: 2.5rem;
 	line-height: 5rem;
 }
+
 .crispy-text {
 	font-size: 3rem;
 	font-family: var(--crispy-font);
 	color: #343a40;
 }
 
-.footer {
+/* .footer {
 	width: 100%;
-	position: absolute;
-	top: 83vh;
-}
+	position: relative;
+} */
+
 @media (max-width: 578px) {
 	.grid-row {
 		width: 90%;
@@ -138,9 +148,11 @@ button:hover {
 		grid-gap: 0px;
 		padding: 0px;
 	}
+
 	.login-text {
 		display: none;
 	}
+
 	.login {
 		width: 90%;
 		margin: 0 auto;

@@ -1,13 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico|Roboto+Condensed');
+
 * {
 	margin: 0;
 	padding: 0;
 }
+
 :root {
 	--main-dark-color: #343a40;
 	--main-font-family: 'Roboto Condensed', sans-serif;
 	--crispy-font: 'Pacifico', cursive;
 }
+
 body {
 	color: #fff;
 	font-family: var(--main-font-family);
@@ -17,6 +20,7 @@ body {
 	color: var(--main-dark-color);
 	background: #f3f3f3;
 }
+
 .nav {
 	width: 100%;
 	margin: 0px;
@@ -29,6 +33,7 @@ body {
 	padding-top: 10px;
 	z-index: 3;
 }
+
 .nav a,
 .footer a {
 	text-decoration: none !important;
@@ -39,15 +44,18 @@ body {
 	display: flex;
 	justify-content: space-between;
 }
+
 .nav-flex-md {
 	display: flex;
 	justify-content: space-between;
 }
+
 .nav-pills {
 	display: inline;
 	list-style: none;
 	margin: 0 1rem;
 }
+
 .nav-item {
 	position: relative;
 	display: inline;
@@ -55,6 +63,7 @@ body {
 	padding-bottom: 0px;
 	padding-top: 0px;
 }
+
 .nav-item::after {
 	content: '';
 	width: 0;
@@ -66,9 +75,11 @@ body {
 	background: #fff;
 	transition: all 0.5s;
 }
+
 .nav-item:hover::after {
 	width: calc(100% - 45%);
 }
+
 .crispy {
 	display: flex;
 	justify-content: space-between;
@@ -76,11 +87,13 @@ body {
 	margin-left: 1.5rem;
 	padding: 0 !important;
 }
+
 .crispy::after {
 	content: "Crispy Munch";
 	color: #fff;
 	font-size: 1rem;
 }
+
 .nav a {
 	text-decoration: none !important;
 	color: #fff !important;
@@ -96,6 +109,7 @@ body {
 	.hide-on-bg {
 		display: block;
 	}
+
 	.nav-flex-md {
 		display: block;
 	}
@@ -115,21 +129,26 @@ body {
 		border-radius: 5px;
 		color: #fff;
 	}
+
 	nav button a#openup {
 		text-align: center;
 	}
+
 	nav button {
 		width: inherit;
 		background: transparent;
 		border: none;
 		outline: none;
 	}
+
 	.nav-pills {
 		margin: 0;
 	}
+
 	.nav-item:hover::after {
 		width: 0px;
 	}
+
 	.nav-item {
 		display: none;
 		width: 100%;
@@ -140,6 +159,7 @@ body {
 		padding: 10px;
 		position: relative;
 	}
+
 	.responsive {
 		display: block;
 	}
