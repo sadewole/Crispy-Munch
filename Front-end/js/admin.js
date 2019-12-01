@@ -201,7 +201,7 @@ class GenericDisplay {
     }
 
     logHistory.innerHTML = `
-    <table class="table table-responsive">
+    <table class="table">
           <thead>
             <tr>
               <th>Ordered date</th>
