@@ -148,8 +148,7 @@ body {
 	margin-bottom: 1rem;
 	color: var(--main-dark-color);
 	border-collapse: collapse;
-	border-spacing: none;
-	box-sizing: border-box;
+	border-spacing: 0px;
 }
 
 .foodMenu .table td:nth-child(1) img {
@@ -379,10 +378,6 @@ tr:nth-of-type(odd) {
 	padding: .7rem;
 }
 
-/* #orderNap .table {
-	background: red;
-} */
-
 #orderNap .table td {
 	padding: 0.5rem;
 	vertical-align: top;
@@ -445,8 +440,7 @@ tr:nth-of-type(odd) {
 	outline: transparent;
 }
 
-@media screen and (max-width: 768px),
-(min-device-width: 768px) and (max-device-width: 1024px) {
+@media (max-width: 1200px) {
 	#orderNap .table {
 		border: 0;
 	}
