@@ -1,12 +1,12 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 var _v = _interopRequireDefault(require("uuid/v4"));
 
 var _Helper = _interopRequireDefault(require("../middleware/Helper"));
 
 var _index = _interopRequireDefault(require("./index"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var hash = _Helper.default.hashPassword('Admin1');
 

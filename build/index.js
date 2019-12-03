@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 var _express = _interopRequireDefault(require("express"));
 
 var _morgan = _interopRequireDefault(require("morgan"));
@@ -17,8 +19,6 @@ var _order = _interopRequireDefault(require("./route/order"));
 var _menu = _interopRequireDefault(require("./route/menu"));
 
 var _user = _interopRequireDefault(require("./route/user"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express.default)(); // middleware
 
