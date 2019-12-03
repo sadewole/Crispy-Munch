@@ -11,6 +11,7 @@
 		"dropTable": "babel-node server/model/dropTable.js",
 		"defaultAdmin": "babel-node server/model/defaultAdmin.js",
 		"tables": "npm run createTable && npm run dropTable && npm run defaultAdmin",
+		"heroku-postbuild": "npm install --production",
 		"deploy": "gh-pages -d Front-end"
 	},
 	"repository": {
