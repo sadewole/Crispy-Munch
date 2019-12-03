@@ -2,7 +2,7 @@
 	"name": "server",
 	"version": "1.0.0",
 	"description": "An application to order a meal",
-	"main": "server/index.js",
+	"main": "index.js",
 	"scripts": {
 		"start": "nodemon --exec babel-node server/index.js",
 		"build": "rm -rf build/ && babel server --out-dir build/",
