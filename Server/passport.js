@@ -1,11 +1,11 @@
 import passport from 'passport';
 import { ExtractJwt } from 'passport-jwt';
-import 'dotenv/config';
 import db from './model/index';
 import Helper from './middleware/Helper';
 
 const JWTStrategy = require('passport-jwt').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
+require('dotenv').config();
 
 // JWT Strategy
 passport.use(
