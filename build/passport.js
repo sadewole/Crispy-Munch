@@ -10,15 +10,15 @@ var _passport = _interopRequireDefault(require("passport"));
 
 var _passportJwt = require("passport-jwt");
 
-require("dotenv/config");
-
 var _index = _interopRequireDefault(require("./model/index"));
 
 var _Helper = _interopRequireDefault(require("./middleware/Helper"));
 
 var JWTStrategy = require('passport-jwt').Strategy;
 
-var LocalStrategy = require('passport-local').Strategy; // JWT Strategy
+var LocalStrategy = require('passport-local').Strategy;
+
+require('dotenv').config(); // JWT Strategy
 
 
 _passport.default.use('jwt', new JWTStrategy({
