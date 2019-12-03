@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "nodemon --exec babel-node server/index.js",
 		"build": "rm -rf build/ && babel server --out-dir build/",
-		"serve": "node dist/index.js",
+		"serve": "node server/index.js",
 		"createTable": "babel-node server/model/table.js",
 		"dropTable": "babel-node server/model/dropTable.js",
 		"defaultAdmin": "babel-node server/model/defaultAdmin.js",
